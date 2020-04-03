@@ -6,10 +6,14 @@ public class MainBoatController : MonoBehaviour
 {
     public bool exhalePhase = false;
     public bool inhalePhase = true;
+    // Public target times can be adjusted by doctor/patient.
     public float exhaleTargetTime = 1f;
     public float inhaleTargetTime = 1f;
     public float exhaleDuration;
     public float inhaleDuration;
+    public float breakDuration;
+
+    // Public cycles variable can be adjusted by doctor/patient.
     public float cycles = 5f;
     public float cycleCounter = 0f;
     public bool gameOver = false;
@@ -18,22 +22,21 @@ public class MainBoatController : MonoBehaviour
     public AudioClip coin;
     public AudioClip crash;
     public AudioClip treasure;
-    
+
     private float downTime = 0f;
     private float upTime = 0f;
+    private float breakTime = 0f;
     private float exhaleStart = 0f;
     private float inhaleStart = 0f;
-    //private bool exhaleIsDone = false;
-    //private bool inhaleIsDone = false;
+    private float breakStart = 0f;
+
     public bool exhaleIsOn = false;
     public bool inhaleIsOn = false;
 
     private float exhaleThresh = 1500f;
     private float inhaleTresh = 1100f;
     private float steadyThresh = 1340f;
-
     private float speedMultiplier = 0.175f;
-    //private float speed = 10f;
 
     private AudioSource audio;
     private Renderer gameBoat;
@@ -48,54 +51,49 @@ public class MainBoatController : MonoBehaviour
     private ScoreBoard treasureScores;
     private ScoreBoard coinScores;
     private ScoreBoard finalScores;
-    private ScoreBoard spedometer; 
+    private ScoreBoard spedometer;
+
     // Start is called before the first frame update
     void Start()
     {
+        // Find the OSC Game Object.
         OSC = GameObject.Find("OSC");
         spirometer = OSC.GetComponent<OSC>();
+        // Read input data from the M5 Stick on start.
         spirometer.SetAddressHandler("/Spirometer/C", ReceiveSpirometerData);
-        //spirometer.SetAllMessageHandler(ReceiveSpirometerData);
 
+        // Get game renderer for the boat
         gameBoat = GetComponent<Renderer>();
         gameBoat.enabled = true;
 
+        // Get rigid body and audio components for the boat.
         boatBody = GetComponent<Rigidbody>();
         audio = GetComponent<AudioSource>();
 
+        // Find the score board objects for each respective scoreboard.
         treasureScores = GameObject.FindGameObjectWithTag("Treasure Score").GetComponent<ScoreBoard>();
         coinScores = GameObject.FindGameObjectWithTag("Coin Score").GetComponent<ScoreBoard>();
         finalScores = GameObject.FindGameObjectWithTag("Final Score").GetComponent<ScoreBoard>();
-        spedometer = GameObject.FindGameObjectWithTag("Final Score").GetComponent<ScoreBoard>();
+		spedometer = GameObject.FindGameObjectWithTag("Spedometer").GetComponent<ScoreBoard>();
+		//spedometer = GameObject.FindGameObjectWithTag("Final Score").GetComponent<ScoreBoard>();
 
-    // Manually set inhale phase to true at start of game.
-    inhalePhase = true;
+		// Manually set inhale phase to true at start of game.
+		inhalePhase = true;
     }
 
-    // Update is called once per frame.
-    void Update()
-    {
-        if (exhaleIsOn && exhalePhase)
-        {
-            if (cameraBounds())
-            {
-                audio.Play();
-            }
-        }
-        if (!exhaleIsOn && !inhaleIsOn)
-        {
-            audio.Stop();
-        }
-    }
+    // Update is called once per frame.     
+    void Update() {}
 
     // Place general movement in FixedUpdate to avoid shaking.
     private void FixedUpdate()
     {
-        if(cycleCounter > cycles)
+        // Once the player has completed the number of cycles, set gameOver to true and destroy all existing gameObjects.
+        if (cycleCounter > cycles)
         {
             gameOver = true;
-            Destroy(GameObject.FindGameObjectWithTag("Treasure"));
+            Destroy(GameObject.FindGameObjectWithTag("Cloud"));
         }
+        // Otherwise, if the game is not over:
         if (!gameOver)
         {
             // Change boat direction based on camera in VR.
@@ -104,39 +102,68 @@ public class MainBoatController : MonoBehaviour
             // Take cross product to ensure that boat goes forward.
             Vector3 cameraVector = new Vector3(Camera.main.transform.forward.x, 0, Camera.main.transform.forward.z);
             Vector3 forwardDir = Vector3.Cross(cameraVector, new Vector3(0, 1, 0));
-            Vector3 stationary = new Vector3(0, 0, 0);
 
-            // Accelerate boat when player is exhaling.
-            if (exhaleIsOn && exhalePhase)
+            // Accelerate boat when player is exhaling or using upArrow input.
+            if ((exhaleIsOn && exhalePhase) || (exhalePhase && Input.GetKey(KeyCode.UpArrow)))
             {
-                if (cameraBounds())
+                if (Input.GetKey(KeyCode.UpArrow))
                 {
-                    inhaleDuration = 0;
-                    downTime = Time.time;
-                    audio.Play();
-                    boatBody.AddRelativeForce(new Vector3(forwardDir.x, 0, forwardDir.z) * speedMultiplier, ForceMode.VelocityChange);
-                    //transform.Translate(new Vector3(forwardDir.x, 0, forwardDir.z) * Time.deltaTime * speed);
-                    //boatBody.AddForce(new Vector3(forwardDir.x, 0, forwardDir.z), ForceMode.Impulse);
-                    exhaleDuration = downTime - exhaleStart;
+                    exhaleIsOn = true;
                 }
+                // reset inhaleDuration timer.
+                inhaleDuration = 0;
+                breakDuration = 0;
+                // Start timer to determine how long the breath is exhaled.
+                downTime = Time.time;
+                // Add force to the boat to push it.
+                boatBody.AddRelativeForce(new Vector3(forwardDir.x, 0, forwardDir.z) * speedMultiplier, ForceMode.VelocityChange);
+                // Determine how long the exhale is or how long upArrow is being held down for.
+                exhaleDuration = downTime - exhaleStart;
+                // Start counting the break time
+                breakStart = Time.time;
             }
 
-            if (inhaleIsOn && inhalePhase)
+            // Pull air clouds towards the boat when inhaling or using Space key.
+            if ((inhaleIsOn && inhalePhase) || (inhalePhase && Input.GetKey(KeyCode.Space)))
             {
-                if (cameraBounds())
+                if (Input.GetKey(KeyCode.Space))
                 {
-                    exhaleDuration = 0;
-                    upTime = Time.time;
-                    inhaleDuration = upTime - inhaleStart;
+                    inhaleIsOn = true;
                 }
+                // reset exhaleDuration & break duration timer.
+                exhaleDuration = 0;
+				breakDuration = 0;
+				// Start timer to determine how long the breath is inhaled.
+				upTime = Time.time;
+                // Determine how long inhale was held for.
+                inhaleDuration = upTime - inhaleStart;
+                // Start counting the break time
+                breakStart = Time.time;
             }
 
-            if (!exhaleIsOn && !inhaleIsOn)
+            // If the player is neither exhaling or inhaling:
+            if ((!exhaleIsOn && !inhaleIsOn) || (!Input.GetKey(KeyCode.Space) && !Input.GetKey(KeyCode.UpArrow)))
             {
+                if (!Input.GetKey(KeyCode.Space) && !Input.GetKey(KeyCode.UpArrow))
+                {
+                    inhaleIsOn = false;
+                    exhaleIsOn = false;
+                }
+
+                // Snapshot this time. This time will be compared with the amount of time exhale/inhale is held to
+                // determine how long the inhale or exhale was.
                 exhaleStart = Time.time;
                 inhaleStart = Time.time;
+
+                // Count how long the break is
+                breakTime = Time.time;
+
+                // Negate the force added to the boat via exhalation.
                 var oppositeDir = -boatBody.velocity;
                 boatBody.AddForce(oppositeDir);
+
+                // Only count exhale and inhales that are longer than 1 second to remove erroneous air flow data.
+                // Once inhale or exhale is conducted and completed, switch cycles.
                 if (inhalePhase)
                 {
                     if (inhaleDuration > 1)
@@ -154,10 +181,13 @@ public class MainBoatController : MonoBehaviour
                     }
                 }
 
+                // Determine how long the break was
+                breakDuration = breakTime - breakStart;
             }
         }
     }
 
+    // Method to receive data message from M5 Stick.
     private void ReceiveSpirometerData(OscMessage message)
     {
         float breathVal = message.GetFloat(0);
@@ -199,21 +229,21 @@ public class MainBoatController : MonoBehaviour
                 spedometer.coinScore += 1;
             }
         }
-        // If it collides with a treasure chest.
-        else if (other.gameObject.CompareTag("Treasure"))
+        // If it collides with a cloud.
+        else if (other.gameObject.CompareTag("Cloud"))
         {
             if (inhalePhase)
             {
                 audio.PlayOneShot(treasure, 3f);
                 // Update all instances of treasureScore so there is data consistency
-                coinScores.treasureScore += 1;
-                treasureScores.treasureScore += 1;
-                finalScores.treasureScore += 1;
-                spedometer.treasureScore += 1;
+                //coinScores.treasureScore += 1;
+                //treasureScores.treasureScore += 1;
+                //finalScores.treasureScore += 1;
+                //spedometer.treasureScore += 1;
                 Destroy(other.gameObject);
             }
         }
-        else if(other.gameObject.CompareTag("Cliff"))
+        else if (other.gameObject.CompareTag("Cliff"))
         {
             audio.PlayOneShot(crash, 5f);
             StartCoroutine(BlinkTime(2f));
@@ -225,7 +255,7 @@ public class MainBoatController : MonoBehaviour
             {
                 transform.Translate(new Vector3(-42, transform.position.y, transform.position.z));
             }
-        }
+        } 
         // If it collides with any other object.
         else
         {
@@ -243,7 +273,7 @@ public class MainBoatController : MonoBehaviour
         {
             // make the boat blink off and on.
             gameBoat.enabled = !gameBoat.enabled;
-            //wait 1 second per interval
+            //wait 0.3 seconds per interval
             yield return new WaitForSeconds(0.3f);
             timeCounter += (1f / 3f);
         }
@@ -251,17 +281,17 @@ public class MainBoatController : MonoBehaviour
     }
 
     // Only allow player to accelerate when looking in the forward direction.
-    private bool cameraBounds()
-    {
-        if(Camera.main.transform.rotation.eulerAngles.y <= 90 && Camera.main.transform.rotation.eulerAngles.y >= -90)
-        {
-            return true;
-        }
-        else
-        {
-            return false;
-        }
-    }
+    //private bool cameraBounds()
+    //{
+    //    if(Camera.main.transform.rotation.eulerAngles.y <= 90 && Camera.main.transform.rotation.eulerAngles.y >= -90)
+    //    {
+    //        return true;
+    //    }
+    //    else
+    //    {
+    //        return false;
+    //    }
+    //}
 }
 
 

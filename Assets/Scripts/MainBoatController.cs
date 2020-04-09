@@ -11,10 +11,10 @@ public class MainBoatController : MonoBehaviour
     public float inhaleTargetTime = 1f;
     public float exhaleDuration;
     public float inhaleDuration;
-    public float breakDuration;
+	public float breakDuration;
 
-    // Public cycles variable can be adjusted by doctor/patient.
-    public float cycles = 5f;
+	// Public cycles variable can be adjusted by doctor/patient.
+	public float cycles = 5f;
     public float cycleCounter = 0f;
     public bool gameOver = false;
     public float speed;
@@ -25,12 +25,12 @@ public class MainBoatController : MonoBehaviour
 
     private float downTime = 0f;
     private float upTime = 0f;
-    private float breakTime = 0f;
-    private float exhaleStart = 0f;
+	private float breakTime = 0f;
+	private float exhaleStart = 0f;
     private float inhaleStart = 0f;
-    private float breakStart = 0f;
+	private float breakStart = 0f;
 
-    public bool exhaleIsOn = false;
+	public bool exhaleIsOn = false;
     public bool inhaleIsOn = false;
 
     private float exhaleThresh = 1500f;
@@ -74,15 +74,15 @@ public class MainBoatController : MonoBehaviour
         treasureScores = GameObject.FindGameObjectWithTag("Treasure Score").GetComponent<ScoreBoard>();
         coinScores = GameObject.FindGameObjectWithTag("Coin Score").GetComponent<ScoreBoard>();
         finalScores = GameObject.FindGameObjectWithTag("Final Score").GetComponent<ScoreBoard>();
-        spedometer = GameObject.FindGameObjectWithTag("Spedometer").GetComponent<ScoreBoard>();
-        //spedometer = GameObject.FindGameObjectWithTag("Final Score").GetComponent<ScoreBoard>();
+		spedometer = GameObject.FindGameObjectWithTag("Spedometer").GetComponent<ScoreBoard>();
+		//spedometer = GameObject.FindGameObjectWithTag("Final Score").GetComponent<ScoreBoard>();
 
-        // Manually set inhale phase to true at start of game.
-        inhalePhase = true;
+		// Manually set inhale phase to true at start of game.
+		inhalePhase = true;
     }
 
     // Update is called once per frame.     
-    void Update() { }
+    void Update() {}
 
     // Place general movement in FixedUpdate to avoid shaking.
     private void FixedUpdate()
@@ -114,16 +114,16 @@ public class MainBoatController : MonoBehaviour
                     }
                     // reset inhaleDuration timer.
                     inhaleDuration = 0;
-                    breakDuration = 0;
-                    // Start timer to determine how long the breath is exhaled.
-                    downTime = Time.time;
+					breakDuration = 0;
+					// Start timer to determine how long the breath is exhaled.
+					downTime = Time.time;
                     // Add force to the boat to push it.
                     boatBody.AddRelativeForce(new Vector3(forwardDir.x, 0, forwardDir.z) * speedMultiplier, ForceMode.VelocityChange);
                     // Determine how long the exhale is or how long upArrow is being held down for.
                     exhaleDuration = downTime - exhaleStart;
-                    // Start counting the break time
-                    breakStart = Time.time;
-                }
+					// Start counting the break time
+					breakStart = Time.time;
+				}
                 // TO ALLOW KEY BOARD PLAYABILITY, UNCOMMENT IF LOOP BELOW:
                 //if (!Input.GetKey(KeyCode.UpArrow))
                 //{
@@ -134,7 +134,7 @@ public class MainBoatController : MonoBehaviour
             if (inhalePhase)
             {
                 // Pull air clouds towards the boat when inhaling or using Space key.
-                if (inhaleIsOn || Input.GetKey(KeyCode.Space))
+                if (inhaleIsOn ||  Input.GetKey(KeyCode.Space))
                 {
                     if (Input.GetKey(KeyCode.Space))
                     {
@@ -142,19 +142,19 @@ public class MainBoatController : MonoBehaviour
                     }
                     // reset exhaleDuration & break duration timer.
                     exhaleDuration = 0;
-                    breakDuration = 0;
-                    // Start timer to determine how long the breath is inhaled.
-                    upTime = Time.time;
+					breakDuration = 0;
+					// Start timer to determine how long the breath is inhaled.
+					upTime = Time.time;
                     // Determine how long inhale was held for.
                     inhaleDuration = upTime - inhaleStart;
-                    // Start counting the break time
-                    breakStart = Time.time;
-                }
+					// Start counting the break time
+					breakStart = Time.time;
+				}
                 // TO ALLOW KEY BOARD PLAYABILITY, UNCOMMENT IF LOOP BELOW:
-                //            if (!Input.GetKey(KeyCode.Space))
-                //{
-                //                inhaleIsOn = false;
-                //}
+    //            if (!Input.GetKey(KeyCode.Space))
+				//{
+    //                inhaleIsOn = false;
+				//}
 
             }
 
@@ -172,11 +172,11 @@ public class MainBoatController : MonoBehaviour
                     exhaleStart = Time.time;
                     inhaleStart = Time.time;
 
-                    // Count how long the break is
-                    breakTime = Time.time;
+					// Count how long the break is
+					breakTime = Time.time;
 
-                    // Negate the force added to the boat via exhalation.
-                    var oppositeDirX = -boatBody.velocity;
+					// Negate the force added to the boat via exhalation.
+					var oppositeDirX = -boatBody.velocity;
                     boatBody.AddForce(oppositeDirX);
 
                     // Only count exhale and inhales that are longer than 1 second to remove erroneous air flow data.
@@ -198,20 +198,20 @@ public class MainBoatController : MonoBehaviour
                         }
                     }
 
-                    // Determine how long the break was
-                    breakDuration = breakTime - breakStart;
-                }
+					// Determine how long the break was
+					breakDuration = breakTime - breakStart;
+				}
 
                 // Snapshot this time. This time will be compared with the amount of time exhale/inhale is held to
                 // determine how long the inhale or exhale was.
                 exhaleStart = Time.time;
                 inhaleStart = Time.time;
 
-                // Count how long the break is
-                breakTime = Time.time;
+				// Count how long the break is
+				breakTime = Time.time;
 
-                // Negate the force added to the boat via exhalation.
-                var oppositeDir = -boatBody.velocity;
+				// Negate the force added to the boat via exhalation.
+				var oppositeDir = -boatBody.velocity;
                 boatBody.AddForce(oppositeDir);
 
                 // Only count exhale and inhales that are longer than 1 second to remove erroneous air flow data.
@@ -233,9 +233,9 @@ public class MainBoatController : MonoBehaviour
                     }
                 }
 
-                // Determine how long the break was
-                breakDuration = breakTime - breakStart;
-            }
+				// Determine how long the break was
+				breakDuration = breakTime - breakStart;
+			}
 
         }
     }
@@ -308,7 +308,7 @@ public class MainBoatController : MonoBehaviour
             {
                 transform.Translate(new Vector3(-42, transform.position.y, transform.position.z));
             }
-        }
+        } 
         // If it collides with any other object.
         else
         {

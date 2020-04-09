@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+// Determine render order for boat mask. This will ensure that water doesn't go through the boat.
 [AddComponentMenu("Rendering/SetRenderQueue")]
 public class SetRenderQueue : MonoBehaviour
 {

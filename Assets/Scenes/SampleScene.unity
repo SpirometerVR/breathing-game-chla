@@ -267,7 +267,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   inPort: 8000
-  outIP: 192.168.0.102
+  outIP: 192.168.1.188
   outPort: 8000
 --- !u!4 &317082002
 Transform:
@@ -986,9 +986,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   coinOne: {fileID: 665085585116290574, guid: 555b25360c8bf4b06ae373bdf58628a9, type: 3}
-  remainingCoins: {fileID: 7183193875962647603, guid: 857a6bfb93a1b476b92337ac9c645a66,
+  remainingCoins: {fileID: 665085585116290574, guid: c6e7d09e865eb46449d21c4143a2d01b,
     type: 3}
-  treasure: {fileID: 6424089983100042741, guid: 5ffb553115a85484e8234836b736566f,
+  treasure: {fileID: 6826293973449116806, guid: 45d9cd53f0d22415f95af5f34c911466,
     type: 3}
 --- !u!114 &1389683310
 MonoBehaviour:

@@ -41,7 +41,7 @@ public class GenerateMap : MonoBehaviour
 
         float updateTime = Time.realtimeSinceStartup;
 
-        // Generate tiles on either size of current tile on X and Z axes.
+        // Generate tiles on either side of current tile on Z axis.
         for(int z = -halfTilesZ; z <= halfTilesZ; z++)
         {
             Vector3 pos = new Vector3(0, 0, (z * (planeSize) + startPos.x));
@@ -70,7 +70,7 @@ public class GenerateMap : MonoBehaviour
             // Round down on player position.
             int playerZ = (int)(Mathf.Floor(player.transform.position.z / planeSize) * planeSize);
 
-            // Generate tiles on either size of current tile on X and Z axes.
+            // Generate tiles on either size of current tile on Z axis.
             for (int z = -halfTilesZ; z <= halfTilesZ; z++)
              {
                 Vector3 pos = new Vector3(0, 0, (z * (planeSize)+ playerZ));
@@ -114,7 +114,7 @@ public class GenerateMap : MonoBehaviour
         }
     }
 
-    // NEED TO CHANGE THIS FOR EXHALE TILES AND INHALE TILES
+    // Randomly choose an ocean tile from the array.
     private int RandomOceanGenerator()
     {
         return Random.Range(0, plane.Length);

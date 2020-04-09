@@ -1,34 +1,33 @@
-﻿<Properties StartupConfiguration="{5378990D-5086-BB92-295C-9E0EE88BEC6D}|">
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/ScoreBoard.cs">
+﻿<Properties StartupConfiguration="{D0981440-24AF-3DCB-3995-900A91F41433}|">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/CameraController.cs">
     <Files>
-      <File FileName="Assets/Scripts/MainBoatController.cs" Line="207" Column="43" />
-      <File FileName="Assets/Scripts/ScoreBoard.cs" Line="101" Column="6" />
-      <File FileName="Assets/Scripts/GenerateMap.cs" />
-      <File FileName="Assets/Scripts/BreathObjectGenerator.cs" />
-      <File FileName="Assets/Scripts/TreasureController.cs" />
+      <File FileName="Assets/Scripts/BreathObjectGenerator.cs" Line="180" Column="49" />
+      <File FileName="Assets/Scripts/ScoreBoard.cs" />
+      <File FileName="Assets/Scripts/MainBoatController.cs" Line="348" Column="2" />
+      <File FileName="Assets/Scripts/CloudController.cs" />
+      <File FileName="Assets/Scripts/RotateObject.cs" />
+      <File FileName="Assets/Scripts/CameraController.cs" Line="50" Column="1" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
         <State name="__root__">
           <Node name="breathing-game-chla" expanded="True">
             <Node name="Assets" expanded="True">
-              <Node name="Scripts" expanded="True">
-                <Node name="ScoreBoard.cs" selected="True" />
-              </Node>
+              <Node name="Scripts" selected="True" />
             </Node>
           </Node>
         </State>
       </Pad>
     </Pads>
   </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.ItemProperties.Oculus.VR.Editor PreferredExecutionTarget="45b382e1-b922-4fc0-80e0-5b7a41afe09d" />
   <MonoDevelop.Ide.DebuggingService.PinnedWatches />
   <DisabledProjects>
     <String>Oculus.VR.csproj</String>
+    <String>Assembly-CSharp.csproj</String>
     <String>Assembly-CSharp-Editor.csproj</String>
-    <String>Oculus.VR.Scripts.Editor.csproj</String>
   </DisabledProjects>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.ItemProperties.Assembly-CSharp PreferredExecutionTarget="0ad5ad32-3bba-4d4a-86bb-15163d7e3454" />
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
     <BreakpointStore />
   </MonoDevelop.Ide.DebuggingService.Breakpoints>

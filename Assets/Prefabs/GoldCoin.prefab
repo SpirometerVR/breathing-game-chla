@@ -89,6 +89,7 @@ GameObject:
   m_Component:
   - component: {fileID: 662202395759461580}
   - component: {fileID: 666402018422156134}
+  - component: {fileID: 5375510172073209357}
   m_Layer: 0
   m_Name: GoldCoin
   m_TagString: Coin
@@ -105,7 +106,7 @@ Transform:
   m_GameObject: {fileID: 665085585116290574}
   m_LocalRotation: {x: -0.7071068, y: 0, z: 0, w: 0.7071068}
   m_LocalPosition: {x: 480, y: 4.7, z: 328}
-  m_LocalScale: {x: 2000, y: 2000, z: 2000}
+  m_LocalScale: {x: 400, y: 400, z: 400}
   m_Children:
   - {fileID: 662209484332632292}
   m_Father: {fileID: 0}
@@ -122,5 +123,17 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.011095633, y: 0.003718832, z: 0.010770115}
-  m_Center: {x: -0.00006968231, y: 0.0010384793, z: 0.000012896729}
+  m_Size: {x: 0.011095633, y: 0.0037188262, z: 0.09958665}
+  m_Center: {x: -0.00006968212, y: 0.0010384823, z: 0.023792263}
+--- !u!114 &5375510172073209357
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 665085585116290574}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0d0d4fab737cd41d59c86313c0b4c609, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

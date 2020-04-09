@@ -15,6 +15,7 @@ public class TextMover : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        // Move the main scoreboard object so that it moves with the boat position.
         transform.position = new Vector3(transform.position.x, transform.position.y, player.transform.position.z) + offset;
 
     }

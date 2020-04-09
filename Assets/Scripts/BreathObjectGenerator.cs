@@ -18,21 +18,21 @@ public class BreathObjectGenerator : MonoBehaviour
     private float initialCoinDistance = 20f;
     private float initialTreasureDistance;
     private float remainingCoinDistance = 0f;
+    private float coinHeight = 16.8f;
 
-    private bool isCoroutineExecutingTreasure = false;
+    private bool isCoroutineExecutingCloud = false;
     private bool isCoroutineExecutingCoin = false;
     private bool isCoroutineExecutingCoinDestroy = false;
-    private bool isCoroutineExecutingTreasureDestroy = false;
-
+    private bool isCoroutineExecutingCloudDestroy = false;
 
     // Start is called before the first frame update
     void Start()
     {
         player = GameObject.FindGameObjectWithTag("Boat");
         playerScript = player.GetComponent<MainBoatController>();
-        initialTreasureDistance = (51 / 3) * playerScript.inhaleTargetTime;
+        // Determine initial distance for the clouds to form.
+        initialTreasureDistance = (50 / playerScript.inhaleTargetTime) * playerScript.inhaleTargetTime;
     }
-
 
     // Update is called once per frame
     void Update()
@@ -41,24 +41,25 @@ public class BreathObjectGenerator : MonoBehaviour
         {
             if (playerScript.inhalePhase)
             {
-                //Destroy(GameObject.FindGameObjectWithTag("Coin"));
-                //Destroy(GameObject.FindGameObjectWithTag("Coin Two"));
+                // Destroy any existing coins for the inhale phase.
                 StartCoroutine(DestroyCoins());
+                // If the clouds have not been spawned yet, spawn them.
                 if (!inhaleSpawned)
                 {
-                    StartCoroutine(SpawnTreasureItems());
+                    StartCoroutine(SpawnCloudItems());
                 }
             }
             if (playerScript.exhalePhase)
             {
-                //Destroy(GameObject.FindGameObjectWithTag("Treasure"));
-                StartCoroutine(DestroyTreasure());
+                //Destroy all cloud objects still in the game during exhale phase.
+                StartCoroutine(DestroyCloud());
+                // If the coins have not been spawned yet, spawn them.
                 if (!exhaleSpawned)
                 {
+                    // Spawn the first coin first to determine the position of the other coins.
                     if (!firstCoinSpawn)
                     {
                         StartCoroutine(SpawnCoinItems());
-                        //SpawnFirstCoin();
                     }
                     // Spawn the remaining coins based on the exhale duration.
                     else
@@ -84,35 +85,38 @@ public class BreathObjectGenerator : MonoBehaviour
         Vector3 playerPosition = transform.position;
         // Need cross product to produce coins in front of boat.
         Vector3 playerForward = Vector3.Cross(transform.forward, new Vector3(0, 1, 0));
+        // Determine the right rotation for the coin gameObject.
         Quaternion playerRotation = Quaternion.Euler(90, 180, 0);
-        Vector3 spawnPosition = new Vector3(RandomXPosition(), playerPosition.y, playerPosition.z) + new Vector3(0,0,1) * initialCoinDistance;
+        // Determine the spawn position of the first coin based on the boat's position.
+        Vector3 spawnPosition = new Vector3(RandomXPosition(), coinHeight, playerPosition.z) + new Vector3(0,0,1) * initialCoinDistance;
         Instantiate(coinOne, spawnPosition, playerRotation);
         firstCoinSpawn = true;
         inhaleSpawned = false;
     }
 
-    // Spawn exhaleDuration number of coins one after another
+    // Spawn the remaining number of coins one after another. The number is based on the exhaleDuration float from the MainBoatController.
     private void SpawnRemainingCoins()
     {
         // Need cross product to produce coins in front of boat.
         Vector3 playerForward = Vector3.Cross(transform.forward, new Vector3(0, 1, 0));
         Quaternion playerRotation = Quaternion.Euler(90, 180, 0);
+        // Continue spawning coins until their target quantity is reached.
         if (coinCount < playerScript.exhaleTargetTime)
         {
             remainingCoinDistance += 15;
-            // Spawn the other coins right behind the first coin spawned.
+            // Spawn the coin behind the most recent coin spawned.
             Vector3 spawnPosition = GameObject.FindGameObjectWithTag("Coin").transform.position + new Vector3(0, 0, 1) * remainingCoinDistance;
             Instantiate(remainingCoins, spawnPosition, playerRotation);
             coinCount++;
         }
     }
 
-    private void SpawnTreasure()
+    private void SpawnCloud()
     {
-        Vector3 playerPosition = new Vector3(transform.position.x, transform.position.y, transform.position.z);
+        Vector3 playerPosition = new Vector3(transform.position.x + 2.6f, transform.position.y + 14f, transform.position.z);
         // Need cross product to produce coins in front of boat.
         Vector3 playerForward = Vector3.Cross(transform.forward, new Vector3(0, 1, 0));
-        Quaternion playerRotation = Quaternion.Euler(0, 180, 0);
+        Quaternion playerRotation = Quaternion.Euler(0, 0, 0);
         Vector3 spawnPosition = playerPosition + new Vector3(0, 0, 1) * initialTreasureDistance;
         Instantiate(treasure, spawnPosition, playerRotation);
         inhaleSpawned = true;
@@ -133,6 +137,7 @@ public class BreathObjectGenerator : MonoBehaviour
             yield break;
         }
         isCoroutineExecutingCoin = true;
+        // Wait 2.5 seconds to spawn the first coin
         yield return new WaitForSeconds(2.5f);
         SpawnFirstCoin();
         isCoroutineExecutingCoin = false;
@@ -146,33 +151,36 @@ public class BreathObjectGenerator : MonoBehaviour
             yield break;
         }
         isCoroutineExecutingCoinDestroy = true;
+        // Wait 0.8 seconds before destroying coins if the exhale is off
         yield return new WaitForSeconds(0.8f);
         Destroy(GameObject.FindGameObjectWithTag("Coin"));
         Destroy(GameObject.FindGameObjectWithTag("Coin Two"));
         isCoroutineExecutingCoinDestroy = false;
     }
 
-    private IEnumerator SpawnTreasureItems()
+    private IEnumerator SpawnCloudItems()
     {
-        if (isCoroutineExecutingTreasure)
+        if (isCoroutineExecutingCloud)
         {
             yield break;
         }
-        isCoroutineExecutingTreasure = true;
+        isCoroutineExecutingCloud = true;
+        // Wait 3.5 seconds to spawn the new clouds
         yield return new WaitForSeconds(3.5f);
-        SpawnTreasure();
-        isCoroutineExecutingTreasure = false;
+        SpawnCloud();
+        isCoroutineExecutingCloud = false;
     }
 
-    private IEnumerator DestroyTreasure()
+    private IEnumerator DestroyCloud()
     {
-        if (isCoroutineExecutingTreasureDestroy)
+        if (isCoroutineExecutingCloudDestroy)
         {
             yield break;
         }
-        isCoroutineExecutingTreasureDestroy = true;
-        yield return new WaitForSeconds(0.8f);
-        Destroy(GameObject.FindGameObjectWithTag("Treasure"));
-        isCoroutineExecutingTreasureDestroy = false;
+        isCoroutineExecutingCloudDestroy = true;
+        // Wait 0.8 seconds to destory the remaining clouds
+        //yield return new WaitForSeconds(0.8f);
+        Destroy(GameObject.FindGameObjectWithTag("Cloud"));
+        isCoroutineExecutingCloudDestroy = false;
     }
 }

@@ -4,9 +4,10 @@ using UnityEngine;
 
 public class CloudController : MonoBehaviour
 {
-    private float speed = 12.5f;
+    private float speed = (12.5f/2f);
     private Rigidbody rigidBody;
     private GameObject player;
+    private Shader transparent;
     private MainBoatController playerScript;
 
     // Start is called before the first frame update
@@ -21,16 +22,18 @@ public class CloudController : MonoBehaviour
     void Update()
     {
         // Move the treasure object towards the player when inhaling
-        if (playerScript.inhalePhase && playerScript.inhaleIsOn && playerScript.inhaleDuration > 0.4f)
+        if (playerScript.inhalePhase && playerScript.inhaleIsOn)
         {
 			Vector3 playerDirection = (player.transform.position - transform.position).normalized;
 			Vector3 lookDirection = new Vector3(playerDirection.x, 0, -1);
-            transform.Translate(lookDirection * speed * Time.deltaTime);
-            // If the object is past the boat, destroy it. 
-            if (transform.position.z < player.transform.position.z)
-            {
-                Destroy(gameObject);
-            }
-        }
+			transform.Translate(lookDirection * speed * Time.deltaTime);
+			// If the object is past the boat, destroy it. 
+			if (transform.position.z < player.transform.position.z)
+			{
+				Destroy(gameObject);
+			}
+			//alphaLevel -= (1 / playerScript.inhaleTargetTime);
+			//cloud.color = new Color(1, 1, 1, alphaLevel);
+		}
     }
 }

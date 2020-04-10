@@ -120,7 +120,7 @@ GameObject:
   - component: {fileID: 6826293973450046220}
   - component: {fileID: 6826293973451139756}
   - component: {fileID: 6826293973446822658}
-  - component: {fileID: 1119802131510020061}
+  - component: {fileID: 7746238580831512922}
   m_Layer: 0
   m_Name: Cloud_Cumulus (1)
   m_TagString: Cloud
@@ -204,7 +204,7 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: 4300000, guid: 6e253dc59c001e44ab9d35ee01215549, type: 3}
---- !u!114 &1119802131510020061
+--- !u!114 &7746238580831512922
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -228,7 +228,7 @@ GameObject:
   - component: {fileID: 6826293973450093870}
   - component: {fileID: 6826293973451143892}
   - component: {fileID: 6826293973446827132}
-  - component: {fileID: 6567047403794920844}
+  - component: {fileID: 677457966582875233}
   m_Layer: 0
   m_Name: Cloud_Cumulus (2)
   m_TagString: Cloud
@@ -312,7 +312,7 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: 4300000, guid: 6e253dc59c001e44ab9d35ee01215549, type: 3}
---- !u!114 &6567047403794920844
+--- !u!114 &677457966582875233
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -333,6 +333,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6826293973449211430}
+  - component: {fileID: 3379990077531755105}
   m_Layer: 0
   m_Name: Clouds Nimbus
   m_TagString: Cloud
@@ -359,6 +360,18 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &3379990077531755105
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6826293973449116806}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e5c517b31947a4b1c8872367b7e7cded, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &6826293973449124386
 GameObject:
   m_ObjectHideFlags: 0
@@ -371,7 +384,7 @@ GameObject:
   - component: {fileID: 6826293973450073314}
   - component: {fileID: 6826293973451093324}
   - component: {fileID: 6826293973447024862}
-  - component: {fileID: 2525437863477392788}
+  - component: {fileID: 2403931351584281689}
   m_Layer: 0
   m_Name: Cloud_Cumulus_Med (1)
   m_TagString: Cloud
@@ -455,7 +468,7 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: 4300000, guid: 74b8105a60af1c84394ac279e7081b79, type: 3}
---- !u!114 &2525437863477392788
+--- !u!114 &2403931351584281689
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -479,7 +492,7 @@ GameObject:
   - component: {fileID: 6826293973449997442}
   - component: {fileID: 6826293973451144834}
   - component: {fileID: 6826293973446836322}
-  - component: {fileID: 5901979885106977419}
+  - component: {fileID: 6547691704855109313}
   m_Layer: 0
   m_Name: Cloud_Cumulus
   m_TagString: Cloud
@@ -563,7 +576,7 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: 4300000, guid: 6e253dc59c001e44ab9d35ee01215549, type: 3}
---- !u!114 &5901979885106977419
+--- !u!114 &6547691704855109313
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -589,6 +602,10 @@ PrefabInstance:
     - target: {fileID: 165734, guid: 6c1e328deef14cf41982d5f9232e04ff, type: 3}
       propertyPath: m_TagString
       value: Cloud
+      objectReference: {fileID: 0}
+    - target: {fileID: 165734, guid: 6c1e328deef14cf41982d5f9232e04ff, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 457760, guid: 6c1e328deef14cf41982d5f9232e04ff, type: 3}
       propertyPath: m_LocalPosition.x
@@ -665,6 +682,10 @@ PrefabInstance:
       propertyPath: m_TagString
       value: Cloud
       objectReference: {fileID: 0}
+    - target: {fileID: 165734, guid: 6c1e328deef14cf41982d5f9232e04ff, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 457760, guid: 6c1e328deef14cf41982d5f9232e04ff, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0.96
@@ -739,6 +760,10 @@ PrefabInstance:
     - target: {fileID: 165734, guid: 6c1e328deef14cf41982d5f9232e04ff, type: 3}
       propertyPath: m_TagString
       value: Cloud
+      objectReference: {fileID: 0}
+    - target: {fileID: 165734, guid: 6c1e328deef14cf41982d5f9232e04ff, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 457760, guid: 6c1e328deef14cf41982d5f9232e04ff, type: 3}
       propertyPath: m_LocalPosition.x
@@ -815,6 +840,10 @@ PrefabInstance:
       propertyPath: m_TagString
       value: Cloud
       objectReference: {fileID: 0}
+    - target: {fileID: 165734, guid: 6c1e328deef14cf41982d5f9232e04ff, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 457760, guid: 6c1e328deef14cf41982d5f9232e04ff, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0.96
@@ -889,6 +918,10 @@ PrefabInstance:
     - target: {fileID: 165734, guid: 6c1e328deef14cf41982d5f9232e04ff, type: 3}
       propertyPath: m_TagString
       value: Cloud
+      objectReference: {fileID: 0}
+    - target: {fileID: 165734, guid: 6c1e328deef14cf41982d5f9232e04ff, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 457760, guid: 6c1e328deef14cf41982d5f9232e04ff, type: 3}
       propertyPath: m_LocalPosition.x

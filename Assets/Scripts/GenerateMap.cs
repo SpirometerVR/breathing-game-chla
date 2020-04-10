@@ -25,7 +25,8 @@ public class GenerateMap : MonoBehaviour
     private int planeSize = 187;
 
     // Number of additional tiles on the Z and X axes.
-    private int halfTilesZ = 2;
+    private int halfTilesZ = 1;
+    private int halfTilesX = 1;
 
     Vector3 startPos;
 
@@ -42,16 +43,19 @@ public class GenerateMap : MonoBehaviour
         float updateTime = Time.realtimeSinceStartup;
 
         // Generate tiles on either side of current tile on Z axis.
-        for(int z = -halfTilesZ; z <= halfTilesZ; z++)
+        for (int x = -halfTilesX; x <= halfTilesX; x++)
         {
-            Vector3 pos = new Vector3(0, 0, (z * (planeSize) + startPos.x));
-            GameObject gbj = (GameObject)Instantiate(plane[RandomOceanGenerator()], pos, Quaternion.identity);
+            for (int z = -halfTilesZ; z <= halfTilesZ; z++)
+            {
+                Vector3 pos = new Vector3((x * (planeSize) + startPos.x), 0, (z * (planeSize) + startPos.z));
+                GameObject gbj = (GameObject)Instantiate(plane[RandomOceanGenerator()], pos, Quaternion.identity);
 
-            // Create Ocean tiles to be stored in HashTable.
-            string tileName = "Ocean_" + ((int)(pos.x)).ToString() + "_" + ((int)(pos.z)).ToString();
-            gbj.name = tileName;
-            Tile tile = new Tile(gbj, updateTime);
-            tiles.Add(tileName, tile);
+                // Create Ocean tiles to be stored in HashTable.
+                string tileName = "Ocean_" + ((int)(pos.x)).ToString() + "_" + ((int)(pos.z)).ToString();
+                gbj.name = tileName;
+                Tile tile = new Tile(gbj, updateTime);
+                tiles.Add(tileName, tile);
+            }
         }
         
     }
@@ -60,35 +64,40 @@ public class GenerateMap : MonoBehaviour
     void Update()
     {
         // Determine how far player moved from last Ocean tile update.
+        int xMove = (int)(player.transform.position.x - startPos.x);
         int zMove = (int)(player.transform.position.z - startPos.z);
 
         // If the player's position is close to edge of an Ocean tile, generate a new tile.
-        if ((Mathf.Abs(zMove) >= planeSize))
+        if ((Mathf.Abs(xMove) >= planeSize || (Mathf.Abs(zMove) >= planeSize)))
         {
             float updateTime = Time.realtimeSinceStartup;
 
             // Round down on player position.
+            int playerX = (int)(Mathf.Floor((int)player.transform.position.x / (int)planeSize) * planeSize);
             int playerZ = (int)(Mathf.Floor(player.transform.position.z / planeSize) * planeSize);
 
             // Generate tiles on either size of current tile on Z axis.
-            for (int z = -halfTilesZ; z <= halfTilesZ; z++)
-             {
-                Vector3 pos = new Vector3(0, 0, (z * (planeSize)+ playerZ));
-
-                string tileName = "Ocean_" + ((int)(pos.x)).ToString() + "_" + ((int)(pos.z)).ToString();
-
-                // Add new tile if it doesn't exist in hashtable
-                if (!tiles.ContainsKey(tileName))
+            for (int x = -halfTilesX; x <= halfTilesX; x++)
+            {
+                for (int z = -halfTilesZ; z <= halfTilesZ; z++)
                 {
-                    GameObject gbj = (GameObject)Instantiate(plane[RandomOceanGenerator()], pos, Quaternion.identity);
-                    gbj.name = tileName;
-                    Tile tile = new Tile(gbj, updateTime);
-                    tiles.Add(tileName, tile);
-                }
-                // Or update time if the tile already exists.
-                else
-                {
-                    (tiles[tileName] as Tile).creationTime = updateTime;
+                    Vector3 pos = new Vector3((x * (planeSize) + playerX), 0, (z * (planeSize) + playerZ));
+
+                    string tileName = "Ocean_" + ((int)(pos.x)).ToString() + "_" + ((int)(pos.z)).ToString();
+
+                    // Add new tile if it doesn't exist in hashtable
+                    if (!tiles.ContainsKey(tileName))
+                    {
+                        GameObject gbj = (GameObject)Instantiate(plane[RandomOceanGenerator()], pos, Quaternion.identity);
+                        gbj.name = tileName;
+                        Tile tile = new Tile(gbj, updateTime);
+                        tiles.Add(tileName, tile);
+                    }
+                    // Or update time if the tile already exists.
+                    else
+                    {
+                        (tiles[tileName] as Tile).creationTime = updateTime;
+                    }
                 }
             }
 

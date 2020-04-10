@@ -6,6 +6,8 @@ public class MainBoatController : MonoBehaviour
 {
     public bool exhalePhase = false;
     public bool inhalePhase = true;
+    public bool inhaleSuccess = false;
+
     // Public target times can be adjusted by doctor/patient.
     public float exhaleTargetTime = 1f;
     public float inhaleTargetTime = 1f;
@@ -32,9 +34,10 @@ public class MainBoatController : MonoBehaviour
 
 	public bool exhaleIsOn = false;
     public bool inhaleIsOn = false;
+    public bool breakIsOn = false;
 
-    private float exhaleThresh = 1500f;
-    private float inhaleTresh = 1100f;
+    private float exhaleThresh = 1470f;
+    private float inhaleTresh = 1200f;
     private float steadyThresh = 1340f;
     private float speedMultiplier = 0.175f;
 
@@ -104,13 +107,14 @@ public class MainBoatController : MonoBehaviour
             Vector3 forwardDir = Vector3.Cross(cameraVector, new Vector3(0, 1, 0));
 
             // Accelerate boat when player is exhaling or using upArrow input.
-            if (exhalePhase)
+            if (exhalePhase && cameraBounds())
             {
                 if (exhaleIsOn || Input.GetKey(KeyCode.UpArrow))
                 {
                     if (Input.GetKey(KeyCode.UpArrow))
                     {
                         exhaleIsOn = true;
+                        breakIsOn = false;
                     }
                     // reset inhaleDuration timer.
                     inhaleDuration = 0;
@@ -123,15 +127,17 @@ public class MainBoatController : MonoBehaviour
                     exhaleDuration = downTime - exhaleStart;
 					// Start counting the break time
 					breakStart = Time.time;
+                    // Reset inhaleSuccess flag
+                    inhaleSuccess = false;
 				}
-                // TO ALLOW KEY BOARD PLAYABILITY, UNCOMMENT IF LOOP BELOW:
-                //if (!Input.GetKey(KeyCode.UpArrow))
-                //{
-                //    exhaleIsOn = false;
-                //}
-            }
+				//TO ALLOW KEY BOARD PLAYABILITY, UNCOMMENT IF LOOP BELOW:
+				//if (!Input.GetKey(KeyCode.UpArrow))
+				//{
+				//	exhaleIsOn = false;
+				//}
+			}
 
-            if (inhalePhase)
+            if (inhalePhase && cameraBounds())
             {
                 // Pull air clouds towards the boat when inhaling or using Space key.
                 if (inhaleIsOn ||  Input.GetKey(KeyCode.Space))
@@ -139,6 +145,7 @@ public class MainBoatController : MonoBehaviour
                     if (Input.GetKey(KeyCode.Space))
                     {
                         inhaleIsOn = true;
+                        breakIsOn = false;
                     }
                     // reset exhaleDuration & break duration timer.
                     exhaleDuration = 0;
@@ -149,14 +156,18 @@ public class MainBoatController : MonoBehaviour
                     inhaleDuration = upTime - inhaleStart;
 					// Start counting the break time
 					breakStart = Time.time;
-				}
-                // TO ALLOW KEY BOARD PLAYABILITY, UNCOMMENT IF LOOP BELOW:
-    //            if (!Input.GetKey(KeyCode.Space))
+                    if (inhaleDuration >= inhaleTargetTime)
+                    {
+                        inhaleSuccess = true;
+                    }
+                }
+				//TO ALLOW KEY BOARD PLAYABILITY, UNCOMMENT IF LOOP BELOW:
+				//if (!Input.GetKey(KeyCode.Space))
 				//{
-    //                inhaleIsOn = false;
+				//	inhaleIsOn = false;
 				//}
 
-            }
+			}
 
             // If the player is neither exhaling or inhaling:
             if (!exhaleIsOn && !inhaleIsOn)
@@ -166,6 +177,7 @@ public class MainBoatController : MonoBehaviour
                 {
                     inhaleIsOn = false;
                     exhaleIsOn = false;
+                    breakIsOn = true;
 
                     // Snapshot this time. This time will be compared with the amount of time exhale/inhale is held to
                     // determine how long the inhale or exhale was.
@@ -183,15 +195,22 @@ public class MainBoatController : MonoBehaviour
                     // Once inhale or exhale is conducted and completed, switch cycles.
                     if (inhalePhase)
                     {
-                        if (inhaleDuration > 1)
+                        if (inhaleDuration >= inhaleTargetTime)
                         {
+                            inhaleSuccess = true;
                             inhalePhase = false;
                             exhalePhase = true;
+                        }
+						else
+						{
+                            inhaleSuccess = false;
+                            inhalePhase = true;
+                            exhalePhase = false;
                         }
                     }
                     if (exhalePhase)
                     {
-                        if (exhaleDuration > 1)
+                        if (exhaleDuration >= 1)
                         {
                             inhalePhase = true;
                             exhalePhase = false;
@@ -218,23 +237,30 @@ public class MainBoatController : MonoBehaviour
                 // Once inhale or exhale is conducted and completed, switch cycles.
                 if (inhalePhase)
                 {
-                    if (inhaleDuration > 1)
+                    if (inhaleDuration >= inhaleTargetTime)
                     {
+                        inhaleSuccess = true;
                         inhalePhase = false;
                         exhalePhase = true;
+                    }
+                    else
+                    {
+                        inhaleSuccess = false;
+                        inhalePhase = true;
+                        exhalePhase = false;
                     }
                 }
                 if (exhalePhase)
                 {
-                    if (exhaleDuration > 1)
+                    if (exhaleDuration >= 1)
                     {
                         inhalePhase = true;
                         exhalePhase = false;
                     }
                 }
 
-				// Determine how long the break was
-				breakDuration = breakTime - breakStart;
+                // Determine how long the break was
+                breakDuration = breakTime - breakStart;
 			}
 
         }
@@ -244,24 +270,27 @@ public class MainBoatController : MonoBehaviour
     private void ReceiveSpirometerData(OscMessage message)
     {
         float breathVal = message.GetFloat(0);
-        speed = breathVal;
-        Debug.Log(breathVal);
+		speed = breathVal;
+		Debug.Log(breathVal);
         if (breathVal >= exhaleThresh)
         {
             exhaleIsOn = true;
             inhaleIsOn = false;
+            breakIsOn = false;
         }
 
         if (breathVal < exhaleThresh && breathVal > inhaleTresh)
         {
             exhaleIsOn = false;
             inhaleIsOn = false;
+            breakIsOn = true;
         }
 
         if (breathVal <= inhaleTresh)
         {
             inhaleIsOn = true;
             exhaleIsOn = false;
+            breakIsOn = false;
         }
     }
 
@@ -287,13 +316,13 @@ public class MainBoatController : MonoBehaviour
         {
             if (inhalePhase)
             {
-                audio.PlayOneShot(treasure, 3f);
+                //audio.PlayOneShot(treasure, 3f);
                 // Update all instances of treasureScore so there is data consistency
                 //coinScores.treasureScore += 1;
                 //treasureScores.treasureScore += 1;
                 //finalScores.treasureScore += 1;
                 //spedometer.treasureScore += 1;
-                Destroy(other.gameObject);
+                //Destroy(other.gameObject);
             }
         }
         else if (other.gameObject.CompareTag("Cliff"))
@@ -333,18 +362,18 @@ public class MainBoatController : MonoBehaviour
         gameBoat.enabled = true;
     }
 
-    // Only allow player to accelerate when looking in the forward direction.
-    //private bool cameraBounds()
-    //{
-    //    if(Camera.main.transform.rotation.eulerAngles.y <= 90 && Camera.main.transform.rotation.eulerAngles.y >= -90)
-    //    {
-    //        return true;
-    //    }
-    //    else
-    //    {
-    //        return false;
-    //    }
-    //}
+	// Only allow player to play when looking in the forward direction.
+	private bool cameraBounds()
+	{
+		if (transform.rotation.eulerAngles.y <= 135 && transform.rotation.eulerAngles.y >= 45)
+		{
+			return true;
+		}
+		else
+		{
+			return false;
+		}
+	}
 }
 
 

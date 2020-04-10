@@ -6,7 +6,7 @@ public class BreathObjectGenerator : MonoBehaviour
 {
     public GameObject coinOne;
     public GameObject remainingCoins;
-    public GameObject treasure;
+    public GameObject cloud;
 
     private GameObject player;
     private MainBoatController playerScript;
@@ -16,7 +16,7 @@ public class BreathObjectGenerator : MonoBehaviour
     private bool inhaleSpawned = false;
     private bool exhaleSpawned = false;
     private float initialCoinDistance = 20f;
-    private float initialTreasureDistance;
+    private float initialCloudDistance;
     private float remainingCoinDistance = 0f;
     private float coinHeight = 16.8f;
 
@@ -31,7 +31,7 @@ public class BreathObjectGenerator : MonoBehaviour
         player = GameObject.FindGameObjectWithTag("Boat");
         playerScript = player.GetComponent<MainBoatController>();
         // Determine initial distance for the clouds to form.
-        initialTreasureDistance = (50 / playerScript.inhaleTargetTime) * playerScript.inhaleTargetTime;
+        initialCloudDistance = (50 / playerScript.inhaleTargetTime) * playerScript.inhaleTargetTime;
     }
 
     // Update is called once per frame
@@ -41,6 +41,11 @@ public class BreathObjectGenerator : MonoBehaviour
         {
             if (playerScript.inhalePhase)
             {
+                if(playerScript.breakIsOn && playerScript.inhaleDuration > 0.5 && !playerScript.inhaleSuccess)
+				{
+                    StartCoroutine(DestroyCloud());
+					StartCoroutine(SpawnCloudItems());
+				}
                 // Destroy any existing coins for the inhale phase.
                 StartCoroutine(DestroyCoins());
                 // If the clouds have not been spawned yet, spawn them.
@@ -105,7 +110,7 @@ public class BreathObjectGenerator : MonoBehaviour
         {
             remainingCoinDistance += 15;
             // Spawn the coin behind the most recent coin spawned.
-            Vector3 spawnPosition = GameObject.FindGameObjectWithTag("Coin").transform.position + new Vector3(0, 0, 1) * remainingCoinDistance;
+            Vector3 spawnPosition = GameObject.FindGameObjectWithTag("Coin").transform.position + new Vector3(0.25f, 0, 1) * remainingCoinDistance;
             Instantiate(remainingCoins, spawnPosition, playerRotation);
             coinCount++;
         }
@@ -117,10 +122,13 @@ public class BreathObjectGenerator : MonoBehaviour
         // Need cross product to produce coins in front of boat.
         Vector3 playerForward = Vector3.Cross(transform.forward, new Vector3(0, 1, 0));
         Quaternion playerRotation = Quaternion.Euler(0, 0, 0);
-        Vector3 spawnPosition = playerPosition + new Vector3(0, 0, 1) * initialTreasureDistance;
-        Instantiate(treasure, spawnPosition, playerRotation);
+		Vector3 spawnPosition = playerPosition + new Vector3(0, 0, 1) * initialCloudDistance;
+		//Vector3 spawnPosition = playerPosition + new Vector3(0, 1, )
+		Instantiate(cloud, spawnPosition, playerRotation);
         inhaleSpawned = true;
         exhaleSpawned = false;
+        // Reset the inhale Duration to 0 every inhale cycle.
+        playerScript.inhaleDuration = 0;
         playerScript.cycleCounter += 1;
     }
 
@@ -178,9 +186,15 @@ public class BreathObjectGenerator : MonoBehaviour
             yield break;
         }
         isCoroutineExecutingCloudDestroy = true;
-        // Wait 0.8 seconds to destory the remaining clouds
-        //yield return new WaitForSeconds(0.8f);
-        Destroy(GameObject.FindGameObjectWithTag("Cloud"));
+        // Reset inhaleDuration to zero so that clouds are not continuosly destroyed.
+        playerScript.inhaleDuration = 0;
+		// Wait 0.8 seconds to destory the remaining clouds
+		yield return new WaitForSeconds(0.8f);
+		GameObject[] clouds = GameObject.FindGameObjectsWithTag("Cloud");
+        foreach (GameObject cloud in clouds)
+		{
+            GameObject.Destroy(cloud);
+        }
         isCoroutineExecutingCloudDestroy = false;
     }
 }

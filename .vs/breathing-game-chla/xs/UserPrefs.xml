@@ -1,12 +1,12 @@
 ﻿<Properties StartupConfiguration="{D0981440-24AF-3DCB-3995-900A91F41433}|">
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/CameraController.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/ScoreBoard.cs">
     <Files>
-      <File FileName="Assets/Scripts/BreathObjectGenerator.cs" Line="180" Column="49" />
-      <File FileName="Assets/Scripts/ScoreBoard.cs" />
-      <File FileName="Assets/Scripts/MainBoatController.cs" Line="348" Column="2" />
+      <File FileName="Assets/Scripts/CameraController.cs" Line="23" Column="59" />
+      <File FileName="Assets/Scripts/MainBoatController.cs" Line="276" Column="31" />
+      <File FileName="Assets/Scripts/BreathObjectGenerator.cs" Line="113" Column="116" />
       <File FileName="Assets/Scripts/CloudController.cs" />
-      <File FileName="Assets/Scripts/RotateObject.cs" />
-      <File FileName="Assets/Scripts/CameraController.cs" Line="50" Column="1" />
+      <File FileName="Assets/Scripts/GenerateMap.cs" Line="82" Column="60" />
+      <File FileName="Assets/Scripts/ScoreBoard.cs" Line="30" Column="28" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
@@ -18,9 +18,14 @@
           </Node>
         </State>
       </Pad>
+      <Pad Id="MonoDevelop.UnitTesting.TestPad">
+        <State name="__root__">
+          <Node name="breathing-game-chla" expanded="True" selected="True" />
+        </State>
+      </Pad>
     </Pads>
   </MonoDevelop.Ide.Workbench>
-  <MonoDevelop.Ide.ItemProperties.Oculus.VR.Editor PreferredExecutionTarget="45b382e1-b922-4fc0-80e0-5b7a41afe09d" />
+  <MonoDevelop.Ide.ItemProperties.Oculus.VR.Editor PreferredExecutionTarget="b24cc5e7-82d8-42a6-a675-3f85d735f9ef" />
   <MonoDevelop.Ide.DebuggingService.PinnedWatches />
   <DisabledProjects>
     <String>Oculus.VR.csproj</String>

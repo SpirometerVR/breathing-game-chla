@@ -79,7 +79,7 @@ public class GenerateMap : MonoBehaviour
             // Generate tiles on either size of current tile on Z axis.
             for (int x = -halfTilesX; x <= halfTilesX; x++)
             {
-                for (int z = -halfTilesZ; z <= halfTilesZ; z++)
+                for (int z = -halfTilesZ + 1; z <= halfTilesZ + 1; z++)
                 {
                     Vector3 pos = new Vector3((x * (planeSize) + playerX), 0, (z * (planeSize) + playerZ));
 

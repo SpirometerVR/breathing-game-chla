@@ -39,7 +39,7 @@ public class MainBoatController : MonoBehaviour
     private float exhaleThresh = 1470f;
     private float inhaleTresh = 1200f;
     private float steadyThresh = 1340f;
-    private float speedMultiplier = 0.175f;
+    private float speedMultiplier = 0.5f;
 
     private AudioSource audio;
     private Renderer gameBoat;
@@ -99,8 +99,8 @@ public class MainBoatController : MonoBehaviour
         // Otherwise, if the game is not over:
         if (!gameOver)
         {
-            // Change boat direction based on camera in VR.
-            transform.rotation = Quaternion.Euler(transform.rotation.eulerAngles.x, Camera.main.transform.rotation.eulerAngles.y + 90, transform.rotation.eulerAngles.z);
+			// Change boat direction based on camera in VR.
+			transform.rotation = Quaternion.Euler(transform.rotation.eulerAngles.x, Camera.main.transform.rotation.eulerAngles.y + 90, transform.rotation.eulerAngles.z);
 
             // Take cross product to ensure that boat goes forward.
             Vector3 cameraVector = new Vector3(Camera.main.transform.forward.x, 0, Camera.main.transform.forward.z);
@@ -131,10 +131,10 @@ public class MainBoatController : MonoBehaviour
                     inhaleSuccess = false;
 				}
 				//TO ALLOW KEY BOARD PLAYABILITY, UNCOMMENT IF LOOP BELOW:
-				//if (!Input.GetKey(KeyCode.UpArrow))
-				//{
-				//	exhaleIsOn = false;
-				//}
+				if (!Input.GetKey(KeyCode.UpArrow))
+				{
+					exhaleIsOn = false;
+				}
 			}
 
             if (inhalePhase && cameraBounds())
@@ -162,10 +162,10 @@ public class MainBoatController : MonoBehaviour
                     }
                 }
 				//TO ALLOW KEY BOARD PLAYABILITY, UNCOMMENT IF LOOP BELOW:
-				//if (!Input.GetKey(KeyCode.Space))
-				//{
-				//	inhaleIsOn = false;
-				//}
+				if (!Input.GetKey(KeyCode.Space))
+				{
+					inhaleIsOn = false;
+				}
 
 			}
 

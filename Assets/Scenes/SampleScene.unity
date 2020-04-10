@@ -17,7 +17,7 @@ RenderSettings:
   m_Fog: 0
   m_FogColor: {r: 0.10588236, g: 0.27058825, b: 0.47450984, a: 1}
   m_FogMode: 3
-  m_FogDensity: 0.0099
+  m_FogDensity: 0.0009
   m_LinearFogStart: 0
   m_LinearFogEnd: 300
   m_AmbientSkyColor: {r: 0.212, g: 0.227, b: 0.259, a: 1}
@@ -313,9 +313,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   plane:
   - {fileID: 9202227658036591507, guid: 0ef49010ca52d4b25ae29a34e7e5f572, type: 3}
-  - {fileID: 9202227658036591507, guid: 0ef49010ca52d4b25ae29a34e7e5f572, type: 3}
-  - {fileID: 9202227658036591507, guid: 0ef49010ca52d4b25ae29a34e7e5f572, type: 3}
-  - {fileID: 9202227658036591507, guid: 0ef49010ca52d4b25ae29a34e7e5f572, type: 3}
+  - {fileID: 7024078761126484536, guid: af7229f79de92450da7d94afdde63b0a, type: 3}
+  - {fileID: 8879332381512614764, guid: 101ce0859675145eebaae6b0f1cc61ba, type: 3}
+  - {fileID: 3033241747803638424, guid: 821c60efd5d444f9597c623781de364e, type: 3}
   player: {fileID: 1389683307}
 --- !u!4 &546310009
 Transform:

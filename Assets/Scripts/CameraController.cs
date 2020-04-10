@@ -32,11 +32,11 @@ public class CameraController : MonoBehaviour
         isZoomed = (playerScript.exhalePhase && playerScript.exhaleIsOn) ? true : false;
 
         // Push camera back on exhale
-        if (isZoomed) 
-        {
-            mainCamera.fieldOfView = Mathf.Lerp(mainCamera.fieldOfView, zoom, Time.deltaTime*smooth);
-        } else {
-            mainCamera.fieldOfView = Mathf.Lerp(mainCamera.fieldOfView, normal, Time.deltaTime*smooth);
-        }
+        //if (isZoomed) 
+        //{
+        //    mainCamera.fieldOfView = Mathf.Lerp(mainCamera.fieldOfView, zoom, Time.deltaTime*smooth);
+        //} else {
+        //    mainCamera.fieldOfView = Mathf.Lerp(mainCamera.fieldOfView, normal, Time.deltaTime*smooth);
+        //}
     }
 }

@@ -16,6 +16,7 @@ TagManager:
   - Final Score
   - Spedometer
   - Cloud
+  - Submarine
   layers:
   - Default
   - TransparentFX

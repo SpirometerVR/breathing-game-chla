@@ -100,7 +100,7 @@ public class MainBoatController : MonoBehaviour
         if (!gameOver)
         {
 			// Change boat direction based on camera in VR.
-			transform.rotation = Quaternion.Euler(transform.rotation.eulerAngles.x, Camera.main.transform.rotation.eulerAngles.y + 90, transform.rotation.eulerAngles.z);
+			transform.rotation = Quaternion.Euler(transform.rotation.eulerAngles.x, Camera.main.transform.rotation.eulerAngles.y, transform.rotation.eulerAngles.z);
 
             // Take cross product to ensure that boat goes forward.
             Vector3 cameraVector = new Vector3(Camera.main.transform.forward.x, 0, Camera.main.transform.forward.z);
@@ -122,7 +122,7 @@ public class MainBoatController : MonoBehaviour
 					// Start timer to determine how long the breath is exhaled.
 					downTime = Time.time;
                     // Add force to the boat to push it.
-                    boatBody.AddRelativeForce(new Vector3(forwardDir.x, 0, forwardDir.z) * speedMultiplier, ForceMode.VelocityChange);
+                    boatBody.AddRelativeForce(new Vector3(cameraVector.x, 0, cameraVector.z) * speedMultiplier, ForceMode.VelocityChange);
                     // Determine how long the exhale is or how long upArrow is being held down for.
                     exhaleDuration = downTime - exhaleStart;
 					// Start counting the break time
@@ -131,10 +131,10 @@ public class MainBoatController : MonoBehaviour
                     inhaleSuccess = false;
 				}
 				//TO ALLOW KEY BOARD PLAYABILITY, UNCOMMENT IF LOOP BELOW:
-				if (!Input.GetKey(KeyCode.UpArrow))
-				{
-					exhaleIsOn = false;
-				}
+				//if (!Input.GetKey(KeyCode.UpArrow))
+				//{
+				//	exhaleIsOn = false;
+				//}
 			}
 
             if (inhalePhase && cameraBounds())
@@ -162,10 +162,10 @@ public class MainBoatController : MonoBehaviour
                     }
                 }
 				//TO ALLOW KEY BOARD PLAYABILITY, UNCOMMENT IF LOOP BELOW:
-				if (!Input.GetKey(KeyCode.Space))
-				{
-					inhaleIsOn = false;
-				}
+				//if (!Input.GetKey(KeyCode.Space))
+				//{
+				//	inhaleIsOn = false;
+				//}
 
 			}
 
@@ -353,19 +353,30 @@ public class MainBoatController : MonoBehaviour
         float timeCounter = 0;
         while (timeCounter < blinkDuration)
         {
-            // make the boat blink off and on.
-            gameBoat.enabled = !gameBoat.enabled;
-            //wait 0.3 seconds per interval
-            yield return new WaitForSeconds(0.3f);
+   //         submarineParts = GameObject.FindGameObjectsWithTag("Submarine");
+   //         foreach (GameObject sub in submarineParts)
+			//{
+   //             Renderer subRender = sub.GetComponent<Renderer>();
+   //             subRender.enabled = !subRender.enabled;
+			//}
+			// make the boat blink off and on.
+			gameBoat.enabled = !gameBoat.enabled;
+			//wait 0.3 seconds per interval
+			yield return new WaitForSeconds(0.3f);
             timeCounter += (1f / 3f);
         }
-        gameBoat.enabled = true;
-    }
+		gameBoat.enabled = true;
+		//foreach (GameObject sub in submarineParts)
+  //      {
+  //          Renderer subRender = sub.GetComponent<Renderer>();
+  //          subRender.enabled = true;
+  //      }
+	}
 
-	// Only allow player to play when looking in the forward direction.
-	private bool cameraBounds()
+    // Only allow player to play when looking in the forward direction.
+    private bool cameraBounds()
 	{
-		if (transform.rotation.eulerAngles.y <= 135 && transform.rotation.eulerAngles.y >= 45)
+		if (transform.rotation.eulerAngles.y <= 45 && transform.rotation.eulerAngles.y >= -45)
 		{
 			return true;
 		}

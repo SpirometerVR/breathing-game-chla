@@ -1,12 +1,14 @@
-﻿<Properties StartupConfiguration="{D0981440-24AF-3DCB-3995-900A91F41433}|">
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/CameraController.cs">
+﻿<Properties StartupConfiguration="{C3DDFAB1-E380-48AE-A3AE-82A0F842DC85}|">
+  <MonoDevelop.Ide.ItemProperties.Oculus.VR.Scripts.Editor PreferredExecutionTarget="91a0a76e-5533-40fb-be67-c39f48c9531e" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/TextMover.cs">
     <Files>
-      <File FileName="Assets/Scripts/MainBoatController.cs" Line="168" Column="6" />
+      <File FileName="Assets/Scripts/MainBoatController.cs" Line="125" Column="90" />
       <File FileName="Assets/Scripts/BreathObjectGenerator.cs" Line="194" Column="45" />
       <File FileName="Assets/Scripts/CloudController.cs" Line="1" Column="1" />
-      <File FileName="Assets/Scripts/GenerateMap.cs" Line="28" Column="31" />
-      <File FileName="Assets/Scripts/ScoreBoard.cs" Line="30" Column="28" />
-      <File FileName="Assets/Scripts/CameraController.cs" Line="39" Column="26" />
+      <File FileName="Assets/Scripts/GenerateMap.cs" Line="50" Column="79" />
+      <File FileName="Assets/Scripts/ScoreBoard.cs" />
+      <File FileName="Assets/Scripts/CameraController.cs" Line="9" Column="55" />
+      <File FileName="Assets/Scripts/TextMover.cs" Line="1" Column="1" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
@@ -18,19 +20,14 @@
           </Node>
         </State>
       </Pad>
-      <Pad Id="MonoDevelop.UnitTesting.TestPad">
-        <State name="__root__">
-          <Node name="breathing-game-chla" expanded="True" selected="True" />
-        </State>
-      </Pad>
     </Pads>
   </MonoDevelop.Ide.Workbench>
-  <MonoDevelop.Ide.ItemProperties.Oculus.VR.Editor PreferredExecutionTarget="b24cc5e7-82d8-42a6-a675-3f85d735f9ef" />
   <MonoDevelop.Ide.DebuggingService.PinnedWatches />
   <DisabledProjects>
     <String>Oculus.VR.csproj</String>
     <String>Assembly-CSharp.csproj</String>
     <String>Assembly-CSharp-Editor.csproj</String>
+    <String>Oculus.VR.Editor.csproj</String>
   </DisabledProjects>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

@@ -6,7 +6,7 @@ using UnityEngine;
 public class CameraController : MonoBehaviour
 {
     public GameObject player;
-    private static Vector3 offset = new Vector3(0f, 25.23f, -40f);
+    private static Vector3 offset = new Vector3(0f, 22f, -35f);
     private Vector3 zoomOffset = Vector3.Scale(offset, new Vector3(0f, 1.2f, 1.7f));
 
     private float speed = 10f;

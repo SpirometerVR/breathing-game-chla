@@ -22,11 +22,11 @@ public class GenerateMap : MonoBehaviour
     public GameObject player;
 
     // Ocean prefab size.
-    private int planeSize = 187;
+    private int planeSize = 100;
 
     // Number of additional tiles on the Z and X axes.
-    private int halfTilesZ = 1;
-    private int halfTilesX = 1;
+    private int halfTilesZ = 5;
+    private int halfTilesX = 5;
 
     Vector3 startPos;
 
@@ -47,7 +47,7 @@ public class GenerateMap : MonoBehaviour
         {
             for (int z = -halfTilesZ; z <= halfTilesZ; z++)
             {
-                Vector3 pos = new Vector3((x * (planeSize) + startPos.x), 0, (z * (planeSize) + startPos.z));
+                Vector3 pos = new Vector3((x * (planeSize) + startPos.x), -380, (z * (planeSize) + startPos.z));
                 GameObject gbj = (GameObject)Instantiate(plane[RandomOceanGenerator()], pos, Quaternion.identity);
 
                 // Create Ocean tiles to be stored in HashTable.
@@ -81,7 +81,7 @@ public class GenerateMap : MonoBehaviour
             {
                 for (int z = -halfTilesZ + 1; z <= halfTilesZ + 1; z++)
                 {
-                    Vector3 pos = new Vector3((x * (planeSize) + playerX), 0, (z * (planeSize) + playerZ));
+                    Vector3 pos = new Vector3((x * (planeSize) + playerX), -380, (z * (planeSize) + playerZ));
 
                     string tileName = "Ocean_" + ((int)(pos.x)).ToString() + "_" + ((int)(pos.z)).ToString();
 

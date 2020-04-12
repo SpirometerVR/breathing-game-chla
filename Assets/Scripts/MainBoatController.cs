@@ -131,10 +131,10 @@ public class MainBoatController : MonoBehaviour
                     inhaleSuccess = false;
 				}
 				//TO ALLOW KEY BOARD PLAYABILITY, UNCOMMENT IF LOOP BELOW:
-				//if (!Input.GetKey(KeyCode.UpArrow))
-				//{
-				//	exhaleIsOn = false;
-				//}
+				if (!Input.GetKey(KeyCode.UpArrow))
+				{
+					exhaleIsOn = false;
+				}
 			}
 
             if (inhalePhase && cameraBounds())
@@ -162,10 +162,10 @@ public class MainBoatController : MonoBehaviour
                     }
                 }
 				//TO ALLOW KEY BOARD PLAYABILITY, UNCOMMENT IF LOOP BELOW:
-				//if (!Input.GetKey(KeyCode.Space))
-				//{
-				//	inhaleIsOn = false;
-				//}
+				if (!Input.GetKey(KeyCode.Space))
+				{
+					inhaleIsOn = false;
+				}
 
 			}
 

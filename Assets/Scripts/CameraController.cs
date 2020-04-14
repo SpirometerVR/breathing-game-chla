@@ -6,11 +6,11 @@ using UnityEngine;
 public class CameraController : MonoBehaviour
 {
     public GameObject player;
-    private static Vector3 offset = new Vector3(0f, 25f, -35f);
+    private static Vector3 offset = new Vector3(0f, 38f, -54f);
     private Vector3 zoomOffset = Vector3.Scale(offset, new Vector3(0f, 1.2f, 1.7f));
 
     private float speed = 10f;
-    private MainBoatController playerScript;
+    private RocketController playerScript;
 
     Camera mainCamera;
     private int zoom = 75;
@@ -21,7 +21,7 @@ public class CameraController : MonoBehaviour
     void Start()
     {
         mainCamera = Camera.main;
-        playerScript = player.GetComponent<MainBoatController>();
+        playerScript = player.GetComponent<RocketController>();
     }
 
     // Update is called once per frame

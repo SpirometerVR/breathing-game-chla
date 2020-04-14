@@ -1,10 +1,10 @@
 ﻿<Properties StartupConfiguration="{C3DDFAB1-E380-48AE-A3AE-82A0F842DC85}|">
-  <MonoDevelop.Ide.ItemProperties.Oculus.VR.Scripts.Editor PreferredExecutionTarget="ab85ed06-c53b-4101-ae85-5238b0253132" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/GenerateMap.cs">
+  <MonoDevelop.Ide.ItemProperties.Oculus.VR.Scripts.Editor PreferredExecutionTarget="0b892ed9-8582-46f4-a6a4-c5661c1f447f" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/CameraController.cs">
     <Files>
-      <File FileName="Assets/Scripts/GenerateMap.cs" Line="90" Column="22" />
-      <File FileName="Assets/Scripts/CameraController.cs" />
-      <File FileName="Assets/Scripts/MainBoatController.cs" Line="169" Column="1" />
+      <File FileName="Assets/Scripts/GenerateMap.cs" Line="81" Column="5" />
+      <File FileName="Assets/Scripts/CameraController.cs" Line="9" Column="61" />
+      <File FileName="Assets/Scripts/MainBoatController.cs" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">

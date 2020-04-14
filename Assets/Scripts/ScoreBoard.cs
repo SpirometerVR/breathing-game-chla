@@ -10,7 +10,7 @@ public class ScoreBoard : MonoBehaviour
     public float totalCoins;
     public float totalTreasure;
 
-    private MainBoatController player;
+    private RocketController player;
 
     private Text inhaleScore;
     private Text exhaleScore;
@@ -24,13 +24,13 @@ public class ScoreBoard : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        //exhaleScore = GameObject.FindGameObjectWithTag("Coin Score").GetComponent<Text>();
-        //finalScore = GameObject.FindGameObjectWithTag("Final Score").GetComponent<Text>();
+        exhaleScore = GameObject.FindGameObjectWithTag("Coin Score").GetComponent<Text>();
+        finalScore = GameObject.FindGameObjectWithTag("Final Score").GetComponent<Text>();
         spedometerText = GameObject.FindGameObjectWithTag("Spedometer").GetComponent<Text>();
-        player = GameObject.FindGameObjectWithTag("Submarine").GetComponent<MainBoatController>();
+        player = GameObject.FindGameObjectWithTag("Rocket").GetComponent<RocketController>();
 
-        //exhaleScoreCard = GameObject.FindGameObjectWithTag("Coin Score").GetComponent<ScoreBoard>();
-        //finalScoreCard = GameObject.FindGameObjectWithTag("Final Score").GetComponent<ScoreBoard>();
+        exhaleScoreCard = GameObject.FindGameObjectWithTag("Coin Score").GetComponent<ScoreBoard>();
+        finalScoreCard = GameObject.FindGameObjectWithTag("Final Score").GetComponent<ScoreBoard>();
         spedometerCard = GameObject.FindGameObjectWithTag("Spedometer").GetComponent<ScoreBoard>();
 
         totalCoins = player.exhaleTargetTime * player.cycles;
@@ -42,15 +42,16 @@ public class ScoreBoard : MonoBehaviour
     {
         if (player.gameOver)
         {
-            //finalScore.text = "Final Score: " + (treasureScore + coinScore) + "/" + (totalCoins + totalTreasure);
-            //exhaleScore.text = "";
+            //finalScore.gameObject.SetActive(true);
+            finalScore.text = "Final Score: " + (treasureScore + coinScore) + "/" + (totalCoins + totalTreasure);
+            exhaleScore.text = "";
             spedometerText.text = "";
         }
         else
         {
-            //finalScore.text = "";
+            finalScore.text = "";
             spedometerText.text = "Speed: " + player.speed + " mph";
-            //exhaleScore.text = "Coins: " + coinScore;
+            exhaleScore.text = "Coins: " + coinScore;
         }
     }
 }

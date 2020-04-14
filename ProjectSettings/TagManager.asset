@@ -4,19 +4,18 @@
 TagManager:
   serializedVersion: 2
   tags:
-  - Treasure
-  - Ocean
-  - Coin
-  - Sparkle
-  - Boat
-  - Cliff
-  - Coin Two
   - Treasure Score
   - Coin Score
   - Final Score
   - Spedometer
-  - Cloud
-  - Submarine
+  - Rocket
+  - Fire
+  - Space
+  - Diamond
+  - Asteroid
+  - Planet
+  - Diamond Two
+  - Fuel
   layers:
   - Default
   - TransparentFX

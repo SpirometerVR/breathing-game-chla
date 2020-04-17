@@ -15,9 +15,8 @@ public class BreathObjectGenerator : MonoBehaviour
     private bool firstCoinSpawn = false;
     private bool inhaleSpawned = false;
     private bool exhaleSpawned = false;
-    private float initialCoinDistance = 20f;
+    private float initialCoinDistance = 45f;
     private float remainingCoinDistance = 0f;
-    private float coinHeight = 16.8f;
 
     private bool isCoroutineExecutingCloud = false;
     private bool isCoroutineExecutingCoin = false;
@@ -90,7 +89,7 @@ public class BreathObjectGenerator : MonoBehaviour
         // Determine the right rotation for the coin gameObject.
         Quaternion playerRotation = Quaternion.Euler(90, 180, 0);
         // Determine the spawn position of the first coin based on the Rocket's position.
-        Vector3 spawnPosition = new Vector3(RandomXPosition(), coinHeight, playerPosition.z) + new Vector3(0,0,1) * initialCoinDistance;
+        Vector3 spawnPosition = new Vector3(RandomXPosition(), 0, playerPosition.z) + new Vector3(0,0,1) * initialCoinDistance;
         Instantiate(coinOne, spawnPosition, playerRotation);
         firstCoinSpawn = true;
         inhaleSpawned = false;
@@ -107,7 +106,7 @@ public class BreathObjectGenerator : MonoBehaviour
         {
             remainingCoinDistance += 15;
             // Spawn the coin behind the most recent coin spawned.
-            Vector3 spawnPosition = GameObject.FindGameObjectWithTag("Diamond").transform.position + new Vector3(0.25f, 0, 1) * remainingCoinDistance;
+            Vector3 spawnPosition = GameObject.FindGameObjectWithTag("Diamond").transform.position + new Vector3(0, 0, 1) * remainingCoinDistance;
             Instantiate(remainingCoins, spawnPosition, playerRotation);
             coinCount++;
         }
@@ -128,7 +127,7 @@ public class BreathObjectGenerator : MonoBehaviour
 
     private float RandomXPosition()
     {
-        return Random.Range(-25, 25);
+        return Random.Range(-5, 5);
     }
 
     private IEnumerator SpawnCoinItems()

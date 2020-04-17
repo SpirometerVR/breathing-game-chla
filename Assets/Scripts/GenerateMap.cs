@@ -57,7 +57,7 @@ public class GenerateMap : MonoBehaviour
                 tiles.Add(tileName, tile);
             }
         }
-        
+
     }
 
     // Update is called once per frame
@@ -109,7 +109,7 @@ public class GenerateMap : MonoBehaviour
                 if (ocn.creationTime != updateTime)
                 {
                     Destroy(ocn.theTile);
-                }  
+                }
                 else
                 {
                     // Keep ocean tile.

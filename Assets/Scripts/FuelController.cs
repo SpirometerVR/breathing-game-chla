@@ -27,7 +27,7 @@ public class FuelController : MonoBehaviour
 			Vector3 lookDirection = new Vector3(playerDirection.x, 0, playerDirection.z);
 			transform.Translate(playerDirection * speed * Time.deltaTime);
 			// If the object is past the boat, destroy it. 
-			if (transform.position.z >= player.transform.position.z)
+			if (transform.position.z >= player.transform.position.z - 0.5)
 			{
 				Destroy(gameObject);
 			}

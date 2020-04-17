@@ -131,10 +131,10 @@ public class RocketController : MonoBehaviour
                     inhaleSuccess = false;
 				}
                 //TO ALLOW KEY BOARD PLAYABILITY, UNCOMMENT IF LOOP BELOW:
-                if (!Input.GetKey(KeyCode.UpArrow))
-                {
-                    exhaleIsOn = false;
-                }
+                //if (!Input.GetKey(KeyCode.UpArrow))
+                //{
+                //    exhaleIsOn = false;
+                //}
             }
 
             if (inhalePhase && cameraBounds())
@@ -162,10 +162,10 @@ public class RocketController : MonoBehaviour
                     }
                 }
                 //TO ALLOW KEY BOARD PLAYABILITY, UNCOMMENT IF LOOP BELOW:
-                if (!Input.GetKey(KeyCode.Space))
-                {
-                    inhaleIsOn = false;
-                }
+                //if (!Input.GetKey(KeyCode.Space))
+                //{
+                //    inhaleIsOn = false;
+                //}
 
             }
 
@@ -270,9 +270,9 @@ public class RocketController : MonoBehaviour
     private void ReceiveSpirometerData(OscMessage message)
     {
         float breathVal = message.GetFloat(0);
-        //speed = breathVal;
-        speed = Camera.main.transform.rotation.eulerAngles.y;
-        Debug.Log(breathVal);
+		speed = breathVal;
+		//speed = Camera.main.transform.rotation.eulerAngles.y;
+		Debug.Log(breathVal);
         if (breathVal >= exhaleThresh)
         {
             exhaleIsOn = true;
@@ -313,39 +313,25 @@ public class RocketController : MonoBehaviour
             }
         }
         // If it collides with a cloud.
-        else if (other.gameObject.CompareTag("Cloud"))
+        else if (other.gameObject.CompareTag("Fuel"))
         {
             if (inhalePhase)
             {
-                //audio.PlayOneShot(treasure, 3f);
-                // Update all instances of treasureScore so there is data consistency
-                //coinScores.treasureScore += 1;
-                //treasureScores.treasureScore += 1;
-                //finalScores.treasureScore += 1;
-                //spedometer.treasureScore += 1;
-                //Destroy(other.gameObject);
-            }
+				//audio.PlayOneShot(treasure, 3f);
+				// Update all instances of treasureScore so there is data consistency
+				//coinScores.treasureScore += 1;
+				//treasureScores.treasureScore += 1;
+				//finalScores.treasureScore += 1;
+				//spedometer.treasureScore += 1;
+				Destroy(other.gameObject);
+			}
         }
-        else if (other.gameObject.CompareTag("Cliff"))
-        {
-            audio.PlayOneShot(crash, 5f);
-            StartCoroutine(BlinkTime(2f));
-            if (transform.position.x >= 44)
-            {
-                transform.Translate(new Vector3(42, transform.position.y, transform.position.z));
-            }
-            if (transform.position.x <= -44)
-            {
-                transform.Translate(new Vector3(-42, transform.position.y, transform.position.z));
-            }
-        } 
         // If it collides with any other object.
         else
         {
-            // If the rocket collides with an object, blink on and off.
-            //audio.PlayOneShot(crash, 5f);
-            //StartCoroutine(BlinkTime(2f));
-        }
+            audio.PlayOneShot(crash, 5f);
+            StartCoroutine(BlinkTime(2f));
+        } 
     }
 
     // Blink the rocket on and off.

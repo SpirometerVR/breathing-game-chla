@@ -311,13 +311,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fff5aa55eb09649189ac9303b02ce44a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  plane:
-  - {fileID: 2518502567993034146, guid: 7ec66e005804140c19fd77117f6178ce, type: 3}
-  - {fileID: 7487723761170735872, guid: 78880a94e4db44774b81f12802b7d887, type: 3}
+  outsidePlane:
+  - {fileID: 2518502567993034146, guid: f5d83ba2c327248cbb6101480f04289e, type: 3}
+  - {fileID: 7487723761170735872, guid: cd4ec38ef9e4c4823ad4e6b07c931129, type: 3}
   - {fileID: 633584564305569147, guid: 7154b674e792346afadbb2e210ec2440, type: 3}
   - {fileID: 6930972527398168291, guid: 0d017ec168ee049d1bd6025216add3f2, type: 3}
   - {fileID: 5248509226855553987, guid: 63ceea023c79c4fc1a7a993a9061975e, type: 3}
-  - {fileID: 8967923993010554262, guid: ae6c1c968c56d4bbcb07768b636b6f7c, type: 3}
+  insidePlane:
+  - {fileID: 8967923993010554262, guid: 235936914aa2b4bfc9650a43f402ef20, type: 3}
+  - {fileID: 8967923993010554262, guid: 235936914aa2b4bfc9650a43f402ef20, type: 3}
+  - {fileID: 8967923993010554262, guid: 235936914aa2b4bfc9650a43f402ef20, type: 3}
+  - {fileID: 8967923993010554262, guid: 235936914aa2b4bfc9650a43f402ef20, type: 3}
+  - {fileID: 8967923993010554262, guid: 235936914aa2b4bfc9650a43f402ef20, type: 3}
   player: {fileID: 1510365282973292}
 --- !u!4 &546310009
 Transform:
@@ -15296,6 +15301,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4596029872646980618, guid: 4c8596437b30446d7adc86bbe78e6123,
+        type: 3}
+      propertyPath: m_Constraints
+      value: 84
       objectReference: {fileID: 0}
     - target: {fileID: 4596029872646980628, guid: 4c8596437b30446d7adc86bbe78e6123,
         type: 3}

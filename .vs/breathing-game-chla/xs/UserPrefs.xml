@@ -1,19 +1,15 @@
 ﻿<Properties StartupConfiguration="{C3DDFAB1-E380-48AE-A3AE-82A0F842DC85}|">
-  <MonoDevelop.Ide.ItemProperties.Oculus.VR.Scripts.Editor PreferredExecutionTarget="7ba546e9-0659-4938-b3ac-74e02868e026" />
+  <MonoDevelop.Ide.ItemProperties.Oculus.VR.Scripts.Editor PreferredExecutionTarget="9408502a-ece4-4c27-b259-c19d0603fc98" />
   <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/GenerateMap.cs">
     <Files>
-      <File FileName="Assets/Scripts/RocketController.cs" Line="316" Column="49" />
-      <File FileName="Assets/Scripts/BreathObjectGenerator.cs" />
       <File FileName="Assets/Scripts/FuelController.cs" Line="29" Column="51" />
-      <File FileName="Assets/Scripts/GenerateMap.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/GenerateMap.cs" Line="142" Column="18" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
         <State name="__root__">
           <Node name="breathing-game-chla" expanded="True">
-            <Node name="Assets" expanded="True">
-              <Node name="Scripts" selected="True" />
-            </Node>
+            <Node name="Assets" expanded="True" selected="True" />
           </Node>
         </State>
       </Pad>

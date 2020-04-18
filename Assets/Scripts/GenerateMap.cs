@@ -18,7 +18,8 @@ public class Tile
 public class GenerateMap : MonoBehaviour
 {
     // Array with different ocean tiles.
-    public GameObject[] plane;
+    public GameObject[] outsidePlane;
+    public GameObject[] insidePlane;
     public GameObject player;
 
     // Ocean prefab size.
@@ -48,8 +49,23 @@ public class GenerateMap : MonoBehaviour
             for (int z = -halfTilesZ; z <= halfTilesZ; z++)
             {
                 Vector3 pos = new Vector3((x * (planeSize) + startPos.x), 0, (z * (planeSize) + startPos.z));
-                GameObject gbj = (GameObject)Instantiate(plane[RandomOceanGenerator()], pos, Quaternion.identity);
-
+                GameObject gbj;
+                // If it is a tile on the left side, only choose from planes with planets.
+                if (x == -halfTilesX)
+                {
+                    gbj = (GameObject)Instantiate(outsidePlane[RandomPlaneGeneratorOutside()], pos, Quaternion.identity);
+                }
+                // If it is a tile on the right side, only choose from planets with planets, but rotate plane 180.
+                else if (x == halfTilesX)
+                {
+                    GameObject planet = outsidePlane[RandomPlaneGeneratorOutside()];
+                    gbj = (GameObject)Instantiate(planet, pos, Quaternion.Euler(planet.transform.rotation.eulerAngles.x, planet.transform.rotation.eulerAngles.y + 180, planet.transform.rotation.eulerAngles.z));
+                }
+                // Otherwise choose inside planes with only asteroids.
+                else
+                {
+                    gbj = (GameObject)Instantiate(insidePlane[RandomPlaneGeneratorInside()], pos, Quaternion.identity);
+                }
                 // Create Ocean tiles to be stored in HashTable.
                 string tileName = "Ocean_" + ((int)(pos.x)).ToString() + "_" + ((int)(pos.z)).ToString();
                 gbj.name = tileName;
@@ -88,7 +104,23 @@ public class GenerateMap : MonoBehaviour
                     // Add new tile if it doesn't exist in hashtable
                     if (!tiles.ContainsKey(tileName))
                     {
-                        GameObject gbj = (GameObject)Instantiate(plane[RandomOceanGenerator()], pos, Quaternion.identity);
+                        GameObject gbj;
+                        // If it is a tile on the left side, only choose from planes with planets.
+                        if (x == -halfTilesX)
+                        {
+                            gbj = (GameObject)Instantiate(outsidePlane[RandomPlaneGeneratorOutside()], pos, Quaternion.identity);
+                        }
+                        // If it is a tile on the right side, only choose from planets with planets, but rotate plane 180.
+                        else if (x == halfTilesX)
+                        {
+                            GameObject planet = outsidePlane[RandomPlaneGeneratorOutside()];
+                            gbj = (GameObject)Instantiate(planet, pos, Quaternion.Euler(planet.transform.rotation.eulerAngles.x, planet.transform.rotation.eulerAngles.y + 180, planet.transform.rotation.eulerAngles.z));
+                        }
+                        // Otherwise choose inside planes with only asteroids.
+                        else
+                        {
+                            gbj = (GameObject)Instantiate(insidePlane[RandomPlaneGeneratorInside()], pos, Quaternion.identity);
+                        }
                         gbj.name = tileName;
                         Tile tile = new Tile(gbj, updateTime);
                         tiles.Add(tileName, tile);
@@ -123,10 +155,16 @@ public class GenerateMap : MonoBehaviour
         }
     }
 
-    // Randomly choose an ocean tile from the array.
-    private int RandomOceanGenerator()
+    // Randomly choose an plane tile from the array.
+    private int RandomPlaneGeneratorOutside()
     {
-        return Random.Range(0, plane.Length);
+        return Random.Range(0, outsidePlane.Length);
+    }
+
+    // Randomly choose an plane tile from the array.
+    private int RandomPlaneGeneratorInside()
+    {
+        return Random.Range(0, insidePlane.Length);
     }
 
 

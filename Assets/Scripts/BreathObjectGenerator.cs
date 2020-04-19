@@ -15,7 +15,7 @@ public class BreathObjectGenerator : MonoBehaviour
     private bool firstCoinSpawn = false;
     private bool inhaleSpawned = false;
     private bool exhaleSpawned = false;
-    private float initialCoinDistance = 45f;
+    private float initialCoinDistance = 130f;
     private float remainingCoinDistance = 0f;
 
     private bool isCoroutineExecutingCloud = false;
@@ -104,7 +104,7 @@ public class BreathObjectGenerator : MonoBehaviour
         // Continue spawning coins until their target quantity is reached.
         if (coinCount < playerScript.exhaleTargetTime)
         {
-            remainingCoinDistance += 15;
+            remainingCoinDistance += 320;
             // Spawn the coin behind the most recent coin spawned.
             Vector3 spawnPosition = GameObject.FindGameObjectWithTag("Diamond").transform.position + new Vector3(0, 0, 1) * remainingCoinDistance;
             Instantiate(remainingCoins, spawnPosition, playerRotation);
@@ -153,7 +153,7 @@ public class BreathObjectGenerator : MonoBehaviour
         }
         isCoroutineExecutingCoinDestroy = true;
         // Wait 0.8 seconds before destroying coins if the exhale is off
-        yield return new WaitForSeconds(0.8f);
+        yield return new WaitForSeconds(4f);
         Destroy(GameObject.FindGameObjectWithTag("Diamond"));
         Destroy(GameObject.FindGameObjectWithTag("Diamond Two"));
         isCoroutineExecutingCoinDestroy = false;

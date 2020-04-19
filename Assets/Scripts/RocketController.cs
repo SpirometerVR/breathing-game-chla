@@ -39,7 +39,7 @@ public class RocketController : MonoBehaviour
     private float exhaleThresh = 1470f;
     private float inhaleTresh = 1200f;
     private float steadyThresh = 1340f;
-    private float speedMultiplier = 0.5f;
+    private float speedMultiplier = 4f;
 
     private AudioSource audio;
     private Renderer gameRocket;
@@ -131,10 +131,10 @@ public class RocketController : MonoBehaviour
                     inhaleSuccess = false;
 				}
                 //TO ALLOW KEY BOARD PLAYABILITY, UNCOMMENT IF LOOP BELOW:
-                //if (!Input.GetKey(KeyCode.UpArrow))
-                //{
-                //    exhaleIsOn = false;
-                //}
+                if (!Input.GetKey(KeyCode.UpArrow))
+                {
+                   exhaleIsOn = false;
+                }
             }
 
             if (inhalePhase && cameraBounds())
@@ -162,10 +162,10 @@ public class RocketController : MonoBehaviour
                     }
                 }
                 //TO ALLOW KEY BOARD PLAYABILITY, UNCOMMENT IF LOOP BELOW:
-                //if (!Input.GetKey(KeyCode.Space))
-                //{
-                //    inhaleIsOn = false;
-                //}
+                if (!Input.GetKey(KeyCode.Space))
+                {
+                   inhaleIsOn = false;
+                }
 
             }
 

@@ -106,7 +106,7 @@ public class BreathObjectGenerator : MonoBehaviour
         {
             remainingCoinDistance += 320;
             // Spawn the coin behind the most recent coin spawned.
-            Vector3 spawnPosition = GameObject.FindGameObjectWithTag("Diamond").transform.position + new Vector3(0, 0, 1) * remainingCoinDistance;
+            Vector3 spawnPosition = GameObject.FindGameObjectWithTag("Diamond").transform.position + new Vector3(RandomXPosition() / remainingCoinDistance, 0, 1) * remainingCoinDistance;
             Instantiate(remainingCoins, spawnPosition, playerRotation);
             coinCount++;
         }
@@ -127,12 +127,11 @@ public class BreathObjectGenerator : MonoBehaviour
 
     private float RandomXPosition()
     {
-        return Random.Range(-5, 5);
+        return Random.Range(-50, 50);
     }
 
     private IEnumerator SpawnCoinItems()
     {
-
         if (isCoroutineExecutingCoin)
         {
             yield break;
@@ -153,7 +152,7 @@ public class BreathObjectGenerator : MonoBehaviour
         }
         isCoroutineExecutingCoinDestroy = true;
         // Wait 0.8 seconds before destroying coins if the exhale is off
-        yield return new WaitForSeconds(4f);
+        yield return new WaitForSeconds(2f);
         Destroy(GameObject.FindGameObjectWithTag("Diamond"));
         Destroy(GameObject.FindGameObjectWithTag("Diamond Two"));
         isCoroutineExecutingCoinDestroy = false;

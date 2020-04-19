@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 855031849342786751}
   - component: {fileID: 855031849341787775}
   - component: {fileID: 855031849332405119}
-  - component: {fileID: 4026228818270146771}
+  - component: {fileID: 2305008695205736324}
   m_Layer: 0
   m_Name: Orange Planet
   m_TagString: Planet
@@ -100,7 +100,7 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
---- !u!114 &4026228818270146771
+--- !u!114 &2305008695205736324
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -109,6 +109,6 @@ MonoBehaviour:
   m_GameObject: {fileID: 855031849339781311}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0d0d4fab737cd41d59c86313c0b4c609, type: 3}
+  m_Script: {fileID: 11500000, guid: 00862928ec232463c9506c1a9d758064, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 

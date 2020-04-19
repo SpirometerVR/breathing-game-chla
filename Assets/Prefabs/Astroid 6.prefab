@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 8157023621856769142}
   - component: {fileID: 8157023621855350308}
   - component: {fileID: 7804869971189458707}
+  - component: {fileID: 7856616389450603627}
   m_Layer: 0
   m_Name: Astroid 6
   m_TagString: Asteroid
@@ -92,3 +93,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0d0d4fab737cd41d59c86313c0b4c609, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!64 &7856616389450603627
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8157023621853571792}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Convex: 1
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 4300000, guid: 8daee629fcc1f32478f1f0f890b9cf4d, type: 3}

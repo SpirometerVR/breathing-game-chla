@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 5090664269725796967}
   - component: {fileID: 5090664269721451015}
   - component: {fileID: 5090664269720348519}
-  - component: {fileID: -6292116607698193746}
+  - component: {fileID: -3919393536671935473}
   m_Layer: 0
   m_Name: Ice Planet
   m_TagString: Planet
@@ -115,7 +115,7 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
---- !u!114 &-6292116607698193746
+--- !u!114 &-3919393536671935473
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -124,6 +124,6 @@ MonoBehaviour:
   m_GameObject: {fileID: 5090664269727732903}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0d0d4fab737cd41d59c86313c0b4c609, type: 3}
+  m_Script: {fileID: 11500000, guid: 00862928ec232463c9506c1a9d758064, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 

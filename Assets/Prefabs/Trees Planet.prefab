@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 8175676726206941846}
   - component: {fileID: 8175676726205941846}
   - component: {fileID: 8175676726196364630}
-  - component: {fileID: -1924076971313554178}
+  - component: {fileID: -810471576494964275}
   m_Layer: 0
   m_Name: Trees Planet
   m_TagString: Planet
@@ -100,7 +100,7 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
---- !u!114 &-1924076971313554178
+--- !u!114 &-810471576494964275
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -109,6 +109,6 @@ MonoBehaviour:
   m_GameObject: {fileID: 8175676726203750038}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0d0d4fab737cd41d59c86313c0b4c609, type: 3}
+  m_Script: {fileID: 11500000, guid: 00862928ec232463c9506c1a9d758064, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 

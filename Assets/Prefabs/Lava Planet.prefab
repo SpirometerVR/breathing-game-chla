@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 5008062900291940784}
   - component: {fileID: 5036910181290709874}
   - component: {fileID: 5026749840166932550}
-  - component: {fileID: -3588662825053433434}
+  - component: {fileID: -8084775752397082017}
   m_Layer: 0
   m_Name: Lava Planet
   m_TagString: Planet
@@ -81,7 +81,7 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!114 &-3588662825053433434
+--- !u!114 &-8084775752397082017
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -90,7 +90,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 5013471244622128558}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0d0d4fab737cd41d59c86313c0b4c609, type: 3}
+  m_Script: {fileID: 11500000, guid: 00862928ec232463c9506c1a9d758064, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &5013483553021401236

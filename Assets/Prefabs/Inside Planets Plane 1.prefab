@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 2518502566199758286}
   - component: {fileID: 2518502566199758287}
   - component: {fileID: 6364505209799924048}
+  - component: {fileID: 2171876986840746155}
   m_Layer: 0
   m_Name: Astroid 1 (3)
   m_TagString: Untagged
@@ -92,6 +93,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0d0d4fab737cd41d59c86313c0b4c609, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!64 &2171876986840746155
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2518502566199758272}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Convex: 1
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 4300000, guid: 31ae0b1a31e12004eb5425701e198d36, type: 3}
 --- !u!1 &2518502566354049912
 GameObject:
   m_ObjectHideFlags: 0
@@ -104,6 +119,7 @@ GameObject:
   - component: {fileID: 2518502566354049894}
   - component: {fileID: 2518502566354049895}
   - component: {fileID: 2115010028577751962}
+  - component: {fileID: 6205231344437968074}
   m_Layer: 0
   m_Name: Astroid 9
   m_TagString: Untagged
@@ -123,7 +139,7 @@ Transform:
   m_LocalScale: {x: 0.17999999, y: 0.17999998, z: 0.17999998}
   m_Children: []
   m_Father: {fileID: 2518502567993034158}
-  m_RootOrder: 9
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &2518502566354049894
 MeshFilter:
@@ -184,6 +200,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0d0d4fab737cd41d59c86313c0b4c609, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!64 &6205231344437968074
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2518502566354049912}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Convex: 1
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 4300000, guid: 886b4eb72aa7dc94ca02bcd80f2a9436, type: 3}
 --- !u!1 &2518502566418753049
 GameObject:
   m_ObjectHideFlags: 0
@@ -196,6 +226,7 @@ GameObject:
   - component: {fileID: 2518502566418753031}
   - component: {fileID: 2518502566418753048}
   - component: {fileID: 5767377031887741959}
+  - component: {fileID: 1561723839664698530}
   m_Layer: 0
   m_Name: Astroid 1
   m_TagString: Untagged
@@ -276,6 +307,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0d0d4fab737cd41d59c86313c0b4c609, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!64 &1561723839664698530
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2518502566418753049}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Convex: 1
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 4300000, guid: 31ae0b1a31e12004eb5425701e198d36, type: 3}
 --- !u!1 &2518502566551741136
 GameObject:
   m_ObjectHideFlags: 0
@@ -288,6 +333,7 @@ GameObject:
   - component: {fileID: 2518502566551741150}
   - component: {fileID: 2518502566551741151}
   - component: {fileID: 7687918181809474047}
+  - component: {fileID: 4642487106463968552}
   m_Layer: 0
   m_Name: Astroid 9 (1)
   m_TagString: Untagged
@@ -368,6 +414,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0d0d4fab737cd41d59c86313c0b4c609, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!64 &4642487106463968552
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2518502566551741136}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Convex: 1
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 4300000, guid: 886b4eb72aa7dc94ca02bcd80f2a9436, type: 3}
 --- !u!1 &2518502566620183058
 GameObject:
   m_ObjectHideFlags: 0
@@ -380,6 +440,7 @@ GameObject:
   - component: {fileID: 2518502566620183056}
   - component: {fileID: 2518502566620183057}
   - component: {fileID: 3706129849633463378}
+  - component: {fileID: 4462650857508520020}
   m_Layer: 0
   m_Name: Astroid 7
   m_TagString: Untagged
@@ -399,7 +460,7 @@ Transform:
   m_LocalScale: {x: 0.02, y: 0.02, z: 0.02}
   m_Children: []
   m_Father: {fileID: 2518502567993034158}
-  m_RootOrder: 11
+  m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &2518502566620183056
 MeshFilter:
@@ -460,6 +521,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0d0d4fab737cd41d59c86313c0b4c609, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!64 &4462650857508520020
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2518502566620183058}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Convex: 1
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 4300000, guid: ea11fa1303cc7c74484e1c03c2f40493, type: 3}
 --- !u!1 &2518502566782242419
 GameObject:
   m_ObjectHideFlags: 0
@@ -472,6 +547,7 @@ GameObject:
   - component: {fileID: 2518502566782242417}
   - component: {fileID: 2518502566782242418}
   - component: {fileID: 5890851347423992896}
+  - component: {fileID: 803722529083728376}
   m_Layer: 0
   m_Name: Astroid 1 (1)
   m_TagString: Untagged
@@ -552,6 +628,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0d0d4fab737cd41d59c86313c0b4c609, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!64 &803722529083728376
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2518502566782242419}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Convex: 1
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 4300000, guid: 31ae0b1a31e12004eb5425701e198d36, type: 3}
 --- !u!1 &2518502566828967357
 GameObject:
   m_ObjectHideFlags: 0
@@ -564,6 +654,7 @@ GameObject:
   - component: {fileID: 2518502566828967355}
   - component: {fileID: 2518502566828967356}
   - component: {fileID: 2310635984381469059}
+  - component: {fileID: 387161290659238153}
   m_Layer: 0
   m_Name: Astroid 10
   m_TagString: Untagged
@@ -583,7 +674,7 @@ Transform:
   m_LocalScale: {x: 0.06, y: 0.060000002, z: 0.060000002}
   m_Children: []
   m_Father: {fileID: 2518502567993034158}
-  m_RootOrder: 10
+  m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &2518502566828967355
 MeshFilter:
@@ -644,6 +735,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0d0d4fab737cd41d59c86313c0b4c609, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!64 &387161290659238153
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2518502566828967357}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Convex: 1
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 4300000, guid: 3101314456aa652408cc6fe8163ec1c1, type: 3}
 --- !u!1 &2518502567220653966
 GameObject:
   m_ObjectHideFlags: 0
@@ -656,6 +761,7 @@ GameObject:
   - component: {fileID: 2518502567220653964}
   - component: {fileID: 2518502567220653965}
   - component: {fileID: 8277475761408979320}
+  - component: {fileID: 8109750261539493668}
   m_Layer: 0
   m_Name: Astroid 5
   m_TagString: Untagged
@@ -675,7 +781,7 @@ Transform:
   m_LocalScale: {x: 0.12, y: 0.120000005, z: 0.120000005}
   m_Children: []
   m_Father: {fileID: 2518502567993034158}
-  m_RootOrder: 12
+  m_RootOrder: 11
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &2518502567220653964
 MeshFilter:
@@ -736,6 +842,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0d0d4fab737cd41d59c86313c0b4c609, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!64 &8109750261539493668
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2518502567220653966}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Convex: 1
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 4300000, guid: 0ed1925b0bff24942bafb6e6fb267f56, type: 3}
 --- !u!1 &2518502567220863448
 GameObject:
   m_ObjectHideFlags: 0
@@ -748,6 +868,7 @@ GameObject:
   - component: {fileID: 2518502567220863430}
   - component: {fileID: 2518502567220863431}
   - component: {fileID: 4421115176412994081}
+  - component: {fileID: 367304815500293895}
   m_Layer: 0
   m_Name: Astroid 1 (2)
   m_TagString: Untagged
@@ -828,6 +949,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0d0d4fab737cd41d59c86313c0b4c609, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!64 &367304815500293895
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2518502567220863448}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Convex: 1
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 4300000, guid: 31ae0b1a31e12004eb5425701e198d36, type: 3}
 --- !u!1 &2518502567531696216
 GameObject:
   m_ObjectHideFlags: 0
@@ -840,6 +975,7 @@ GameObject:
   - component: {fileID: 2518502567531696198}
   - component: {fileID: 2518502567531696199}
   - component: {fileID: 1066753637416186975}
+  - component: {fileID: 8047574164809199136}
   m_Layer: 0
   m_Name: Astroid 4
   m_TagString: Untagged
@@ -920,133 +1056,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0d0d4fab737cd41d59c86313c0b4c609, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!1 &2518502567591312663
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 2518502566554986727}
-  - component: {fileID: 2518502567591312659}
-  - component: {fileID: 2518502567591312660}
-  - component: {fileID: 2518502567591312661}
-  - component: {fileID: 2518502567591312662}
-  - component: {fileID: 6324281575203535567}
-  m_Layer: 0
-  m_Name: Ice Planet
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &2518502566554986727
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2518502567591312663}
-  m_LocalRotation: {x: -0, y: 0.7071068, z: -0, w: 0.7071068}
-  m_LocalPosition: {x: -3.6659997, y: 1.92, z: -0.012032471}
-  m_LocalScale: {x: 0.08, y: 0.08, z: 0.08}
-  m_Children: []
-  m_Father: {fileID: 2518502567993034158}
-  m_RootOrder: 8
-  m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
---- !u!33 &2518502567591312659
-MeshFilter:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2518502567591312663}
-  m_Mesh: {fileID: 4300000, guid: 3efdfb47275bdf54583ae191f1a4ef7a, type: 3}
---- !u!23 &2518502567591312660
-MeshRenderer:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2518502567591312663}
-  m_Enabled: 1
-  m_CastShadows: 1
-  m_ReceiveShadows: 1
-  m_DynamicOccludee: 1
-  m_MotionVectors: 1
-  m_LightProbeUsage: 1
-  m_ReflectionProbeUsage: 1
-  m_RayTracingMode: 2
-  m_RenderingLayerMask: 1
-  m_RendererPriority: 0
-  m_Materials:
-  - {fileID: 2100000, guid: 94700f1dd367f4e49a6ddb5032ccc524, type: 2}
-  m_StaticBatchInfo:
-    firstSubMesh: 0
-    subMeshCount: 0
-  m_StaticBatchRoot: {fileID: 0}
-  m_ProbeAnchor: {fileID: 0}
-  m_LightProbeVolumeOverride: {fileID: 0}
-  m_ScaleInLightmap: 1
-  m_ReceiveGI: 1
-  m_PreserveUVs: 0
-  m_IgnoreNormalsForChartDetection: 0
-  m_ImportantGI: 0
-  m_StitchLightmapSeams: 1
-  m_SelectedEditorRenderState: 3
-  m_MinimumChartSize: 4
-  m_AutoUVMaxDistance: 0.5
-  m_AutoUVMaxAngle: 89
-  m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
-  m_SortingOrder: 0
---- !u!64 &2518502567591312661
+--- !u!64 &8047574164809199136
 MeshCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2518502567591312663}
+  m_GameObject: {fileID: 2518502567531696216}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Convex: 0
+  m_Convex: 1
   m_CookingOptions: 30
-  m_Mesh: {fileID: 4300000, guid: 3efdfb47275bdf54583ae191f1a4ef7a, type: 3}
---- !u!95 &2518502567591312662
-Animator:
-  serializedVersion: 3
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2518502567591312663}
-  m_Enabled: 1
-  m_Avatar: {fileID: 9000000, guid: 3efdfb47275bdf54583ae191f1a4ef7a, type: 3}
-  m_Controller: {fileID: 0}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorControllerStateOnDisable: 0
---- !u!114 &6324281575203535567
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2518502567591312663}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 00862928ec232463c9506c1a9d758064, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
+  m_Mesh: {fileID: 4300000, guid: cbb15556f0880aa4284b09f451ba59e6, type: 3}
 --- !u!1 &2518502567663080437
 GameObject:
   m_ObjectHideFlags: 0
@@ -1059,6 +1082,7 @@ GameObject:
   - component: {fileID: 2518502567663080435}
   - component: {fileID: 2518502567663080436}
   - component: {fileID: 5494142844798869646}
+  - component: {fileID: 2705841733203715272}
   m_Layer: 0
   m_Name: Astroid 4 (2)
   m_TagString: Untagged
@@ -1139,6 +1163,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0d0d4fab737cd41d59c86313c0b4c609, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!64 &2705841733203715272
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2518502567663080437}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Convex: 1
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 4300000, guid: cbb15556f0880aa4284b09f451ba59e6, type: 3}
 --- !u!1 &2518502567707364459
 GameObject:
   m_ObjectHideFlags: 0
@@ -1151,6 +1189,7 @@ GameObject:
   - component: {fileID: 2518502567707364457}
   - component: {fileID: 2518502567707364458}
   - component: {fileID: 8295756558032588878}
+  - component: {fileID: 2468494797289662019}
   m_Layer: 0
   m_Name: Astroid 4 (1)
   m_TagString: Untagged
@@ -1231,6 +1270,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0d0d4fab737cd41d59c86313c0b4c609, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!64 &2468494797289662019
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2518502567707364459}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Convex: 1
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 4300000, guid: cbb15556f0880aa4284b09f451ba59e6, type: 3}
 --- !u!1 &2518502567993034146
 GameObject:
   m_ObjectHideFlags: 0
@@ -1244,7 +1297,7 @@ GameObject:
   - component: {fileID: 2518502567993034144}
   - component: {fileID: 2518502567993034145}
   m_Layer: 0
-  m_Name: Planets Plane 1
+  m_Name: Inside Planets Plane 1
   m_TagString: Space
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1269,7 +1322,6 @@ Transform:
   - {fileID: 2518502567711449237}
   - {fileID: 2518502567072976618}
   - {fileID: 2518502566963765355}
-  - {fileID: 2518502566554986727}
   - {fileID: 2518502566282655753}
   - {fileID: 2518502567208699250}
   - {fileID: 2518502567456256332}

@@ -130,12 +130,12 @@ public class RocketController : MonoBehaviour
                     // Reset inhaleSuccess flag
                     inhaleSuccess = false;
 				}
-                //TO ALLOW KEY BOARD PLAYABILITY, UNCOMMENT IF LOOP BELOW:
-                //if (!Input.GetKey(KeyCode.UpArrow))
-                //{
-                //    exhaleIsOn = false;
-                //}
-            }
+				//TO ALLOW KEY BOARD PLAYABILITY, UNCOMMENT IF LOOP BELOW:
+				if (!Input.GetKey(KeyCode.UpArrow))
+				{
+					exhaleIsOn = false;
+				}
+			}
 
             if (inhalePhase && cameraBounds())
             {
@@ -161,13 +161,13 @@ public class RocketController : MonoBehaviour
                         inhaleSuccess = true;
                     }
                 }
-                //TO ALLOW KEY BOARD PLAYABILITY, UNCOMMENT IF LOOP BELOW:
-                //if (!Input.GetKey(KeyCode.Space))
-                //{
-                //    inhaleIsOn = false;
-                //}
+				//TO ALLOW KEY BOARD PLAYABILITY, UNCOMMENT IF LOOP BELOW:
+				if (!Input.GetKey(KeyCode.Space))
+				{
+					inhaleIsOn = false;
+				}
 
-            }
+			}
 
             // If the player is neither exhaling or inhaling:
             if (!exhaleIsOn && !inhaleIsOn)
@@ -331,6 +331,7 @@ public class RocketController : MonoBehaviour
         {
             audio.PlayOneShot(crash, 5f);
             StartCoroutine(BlinkTime(2f));
+            Destroy(other.gameObject);
         } 
     }
 

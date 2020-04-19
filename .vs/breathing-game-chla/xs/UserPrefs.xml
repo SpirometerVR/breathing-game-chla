@@ -1,12 +1,13 @@
 ﻿<Properties StartupConfiguration="{C3DDFAB1-E380-48AE-A3AE-82A0F842DC85}|">
-  <MonoDevelop.Ide.ItemProperties.Oculus.VR.Scripts.Editor PreferredExecutionTarget="c345401b-2f28-42ae-b300-fa79aaaa20b2" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/AsteroidRotation.cs">
+  <MonoDevelop.Ide.ItemProperties.Oculus.VR.Scripts.Editor PreferredExecutionTarget="abe7cdbf-ea7b-4132-9f49-d75bf6e191f7" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/BreathObjectGenerator.cs">
     <Files>
       <File FileName="Assets/Scripts/FuelController.cs" Line="29" Column="51" />
-      <File FileName="Assets/Scripts/RocketController.cs" Line="264" Column="5" />
+      <File FileName="Assets/Scripts/RocketController.cs" Line="125" Column="39" />
       <File FileName="Assets/Scripts/CameraController.cs" />
-      <File FileName="Assets/Scripts/AsteroidRotation.cs" Line="18" Column="45" />
-      <File FileName="Assets/Scripts/PlanetRotation.cs" Line="18" Column="51" />
+      <File FileName="Assets/Scripts/AsteroidRotation.cs" />
+      <File FileName="Assets/Scripts/PlanetRotation.cs" />
+      <File FileName="Assets/Scripts/BreathObjectGenerator.cs" Line="18" Column="43" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">

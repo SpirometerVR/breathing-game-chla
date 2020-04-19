@@ -15150,6 +15150,11 @@ PrefabInstance:
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: 6012f418c60724c1c8704c0bd8f76641, type: 2}
+    - target: {fileID: 4583648933570849787, guid: 4c8596437b30446d7adc86bbe78e6123,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4595818365191411313, guid: 4c8596437b30446d7adc86bbe78e6123,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -15210,6 +15215,11 @@ PrefabInstance:
       propertyPath: m_Constraints
       value: 84
       objectReference: {fileID: 0}
+    - target: {fileID: 4596029872646980619, guid: 4c8596437b30446d7adc86bbe78e6123,
+        type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4596029872646980628, guid: 4c8596437b30446d7adc86bbe78e6123,
         type: 3}
       propertyPath: exhaleTargetTime
@@ -15220,6 +15230,21 @@ PrefabInstance:
       propertyPath: inhaleTargetTime
       value: 3
       objectReference: {fileID: 0}
+    - target: {fileID: 4596029872646980628, guid: 4c8596437b30446d7adc86bbe78e6123,
+        type: 3}
+      propertyPath: coin
+      value: 
+      objectReference: {fileID: 8300000, guid: 6a8c60075137cfd4399c724d469adb9f, type: 3}
+    - target: {fileID: 4596029872646980628, guid: 4c8596437b30446d7adc86bbe78e6123,
+        type: 3}
+      propertyPath: crash
+      value: 
+      objectReference: {fileID: 8300000, guid: 699a21ca60012784c9805c6473120785, type: 3}
+    - target: {fileID: 4596029872646980628, guid: 4c8596437b30446d7adc86bbe78e6123,
+        type: 3}
+      propertyPath: treasure
+      value: 
+      objectReference: {fileID: 8300000, guid: 0aeae5159ed84ed47b6025fd949f2fb5, type: 3}
     - target: {fileID: 4596029872646980629, guid: 4c8596437b30446d7adc86bbe78e6123,
         type: 3}
       propertyPath: coinOne

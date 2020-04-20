@@ -37,11 +37,6 @@ public class BreathObjectGenerator : MonoBehaviour
         {
             if (playerScript.inhalePhase)
             {
-                if(playerScript.breakIsOn && playerScript.inhaleDuration > 0.5 && !playerScript.inhaleSuccess)
-				{
-                    StartCoroutine(DestroyCloud());
-					StartCoroutine(SpawnCloudItems());
-				}
                 // Destroy any existing coins for the inhale phase.
                 StartCoroutine(DestroyCoins());
                 // If the clouds have not been spawned yet, spawn them.
@@ -120,8 +115,6 @@ public class BreathObjectGenerator : MonoBehaviour
 		Instantiate(cloud, spawnPosition, playerRotation);
         inhaleSpawned = true;
         exhaleSpawned = false;
-        // Reset the inhale Duration to 0 every inhale cycle.
-        playerScript.inhaleDuration = 0;
         playerScript.cycleCounter += 1;
     }
 
@@ -152,9 +145,9 @@ public class BreathObjectGenerator : MonoBehaviour
             yield break;
         }
         isCoroutineExecutingCoinDestroy = true;
-        // Wait 0.8 seconds before destroying coins if the exhale is off
-        yield return new WaitForSeconds(4f);
-        Destroy(GameObject.FindGameObjectWithTag("Diamond"));
+		// Wait 0.8 seconds before destroying coins if the exhale is off
+		yield return new WaitForSeconds(2f);
+		Destroy(GameObject.FindGameObjectWithTag("Diamond"));
         Destroy(GameObject.FindGameObjectWithTag("Diamond Two"));
         isCoroutineExecutingCoinDestroy = false;
     }
@@ -179,8 +172,6 @@ public class BreathObjectGenerator : MonoBehaviour
             yield break;
         }
         isCoroutineExecutingCloudDestroy = true;
-        // Reset inhaleDuration to zero so that clouds are not continuosly destroyed.
-        playerScript.inhaleDuration = 0;
 		// Wait 0.8 seconds to destory the remaining clouds
 		yield return new WaitForSeconds(0.8f);
 		GameObject[] fuels = GameObject.FindGameObjectsWithTag("Fuel");

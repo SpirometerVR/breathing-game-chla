@@ -31,8 +31,6 @@ public class FuelController : MonoBehaviour
 			{
 				Destroy(gameObject);
 			}
-			//alphaLevel -= (1 / playerScript.inhaleTargetTime);
-			//cloud.color = new Color(1, 1, 1, alphaLevel);
 		}
     }
 }

@@ -99,6 +99,11 @@ public class RocketController : MonoBehaviour
         // Otherwise, if the game is not over:
         if (!gameOver)
         {
+			// Unfreeze restrictions so that ship moves normally when not in collision mode.
+			rocketBody.constraints = RigidbodyConstraints.None;
+			rocketBody.constraints = RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationZ | RigidbodyConstraints.FreezePositionY;
+			rocketBody.isKinematic = false;
+
 			// Change rocket direction based on camera in VR.
 			transform.rotation = Quaternion.Euler(transform.rotation.eulerAngles.x, Camera.main.transform.rotation.eulerAngles.y, transform.rotation.eulerAngles.z);
 
@@ -121,14 +126,13 @@ public class RocketController : MonoBehaviour
 					breakDuration = 0;
 					// Start timer to determine how long the breath is exhaled.
 					downTime = Time.time;
-                    // Add force to the rocket to push it.
-                    rocketBody.AddRelativeForce(new Vector3(cameraVector.x, 0, cameraVector.z) * speedMultiplier, ForceMode.VelocityChange);
+                    // Use transform.translate so that space ship does not stop on collisions.
+                    transform.Translate(new Vector3(cameraVector.x, 0, cameraVector.z) * 300 * Time.deltaTime);
+                    //rocketBody.AddRelativeForce(new Vector3(cameraVector.x, 0, cameraVector.z) * speedMultiplier, ForceMode.VelocityChange);
                     // Determine how long the exhale is or how long upArrow is being held down for.
                     exhaleDuration = downTime - exhaleStart;
 					// Start counting the break time
 					breakStart = Time.time;
-                    // Reset inhaleSuccess flag
-                    inhaleSuccess = false;
 				}
 
 				//TO ALLOW KEY BOARD PLAYABILITY, UNCOMMENT IF LOOP BELOW:
@@ -157,17 +161,13 @@ public class RocketController : MonoBehaviour
                     inhaleDuration = upTime - inhaleStart;
 					// Start counting the break time
 					breakStart = Time.time;
-                    if (inhaleDuration >= inhaleTargetTime)
-                    {
-                        inhaleSuccess = true;
-                    }
                 }
 
-                //TO ALLOW KEY BOARD PLAYABILITY, UNCOMMENT IF LOOP BELOW:
-                if (!Input.GetKey(KeyCode.Space))
-                {
-                   inhaleIsOn = false;
-                }
+				//TO ALLOW KEY BOARD PLAYABILITY, UNCOMMENT IF LOOP BELOW:
+				if (!Input.GetKey(KeyCode.Space))
+				{
+					inhaleIsOn = false;
+				}
 			}
 
             // If the player is neither exhaling or inhaling:
@@ -188,34 +188,29 @@ public class RocketController : MonoBehaviour
 					// Count how long the break is
 					breakTime = Time.time;
 
-					// Negate the force added to the rocket via exhalation.
-					var oppositeDirX = -rocketBody.velocity;
-                    rocketBody.AddForce(oppositeDirX);
-
-                    // Only count exhale and inhales that are longer than 1 second to remove erroneous air flow data.
-                    // Once inhale or exhale is conducted and completed, switch cycles.
-                    if (inhalePhase)
+                    // Let the spaceship float for a duration of time. Do not do this on start cycle.
+                    if (breakDuration <= 0.5f && exhaleDuration > 0)
                     {
-                        if (inhaleDuration >= inhaleTargetTime)
-                        {
-                            inhaleSuccess = true;
+                        rocketBody.AddRelativeForce(new Vector3(cameraVector.x, 0, cameraVector.z) * 3f, ForceMode.VelocityChange);
+                    }
+                    // Negate the force added to the rocket via exhalation.
+                    else
+                    {
+                        var oppositeDirX = -rocketBody.velocity;
+                        rocketBody.AddForce(oppositeDirX);
+                    }
+
+                    // Only count exhale and inhales that are longer than 0.5 second to remove erroneous air flow data.
+                    // Once inhale or exhale is conducted and completed, switch cycles.
+                    if (inhalePhase && inhaleDuration >= 0.5)
+                    {
                             inhalePhase = false;
                             exhalePhase = true;
-                        }
-						else
-						{
-                            inhaleSuccess = false;
-                            inhalePhase = true;
-                            exhalePhase = false;
-                        }
                     }
-                    if (exhalePhase)
+                    if (exhalePhase && exhaleDuration >= 0.5)
                     {
-                        if (exhaleDuration >= 1)
-                        {
                             inhalePhase = true;
                             exhalePhase = false;
-                        }
                     }
 
 					// Determine how long the break was
@@ -230,34 +225,29 @@ public class RocketController : MonoBehaviour
 				// Count how long the break is
 				breakTime = Time.time;
 
-				// Negate the force added to the rocket via exhalation.
-				var oppositeDir = -rocketBody.velocity;
-                rocketBody.AddForce(oppositeDir);
-
-                // Only count exhale and inhales that are longer than 1 second to remove erroneous air flow data.
-                // Once inhale or exhale is conducted and completed, switch cycles.
-                if (inhalePhase)
+                // Let the spaceship float for a duration of time.
+                if (breakDuration <= 1f && exhaleDuration > 0)
                 {
-                    if (inhaleDuration >= inhaleTargetTime)
-                    {
-                        inhaleSuccess = true;
-                        inhalePhase = false;
-                        exhalePhase = true;
-                    }
-                    else
-                    {
-                        inhaleSuccess = false;
-                        inhalePhase = true;
-                        exhalePhase = false;
-                    }
+                    rocketBody.AddRelativeForce(new Vector3(cameraVector.x, 0, cameraVector.z) * 1, ForceMode.VelocityChange);
                 }
-                if (exhalePhase)
+                // Negate the force added to the rocket via exhalation.
+                else
                 {
-                    if (exhaleDuration >= 1)
-                    {
-                        inhalePhase = true;
-                        exhalePhase = false;
-                    }
+                    var oppositeDir = -rocketBody.velocity;
+                    rocketBody.AddForce(oppositeDir);
+                }
+
+                // Only count exhale and inhales that are longer than 0.5 second to remove erroneous air flow data.
+                // Once inhale or exhale is conducted and completed, switch cycles.
+                if (inhalePhase && inhaleDuration >= 0.5)
+                {
+                    inhalePhase = false;
+                    exhalePhase = true;
+                }
+                if (exhalePhase && exhaleDuration >= 0.5)
+                {
+                    inhalePhase = true;
+                    exhalePhase = false;
                 }
 
                 // Determine how long the break was
@@ -304,8 +294,14 @@ public class RocketController : MonoBehaviour
         {
             if (exhalePhase)
             {
+                // Add constraints so that ship does not float randomly on collision
+                rocketBody.constraints = RigidbodyConstraints.FreezeRotationY | RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationZ | RigidbodyConstraints.FreezePositionX;
+				rocketBody.isKinematic = true;
+				transform.rotation = Quaternion.Euler(0, Camera.main.transform.rotation.eulerAngles.y, 0);
+
                 Destroy(other.gameObject);
                 audio.PlayOneShot(coin, 5f);
+
                 // Update all instances of coinScore so there is data consistency
                 coinScores.coinScore += 1;
                 treasureScores.coinScore += 1;
@@ -318,21 +314,26 @@ public class RocketController : MonoBehaviour
         {
             if (inhalePhase)
             {
-				//audio.PlayOneShot(treasure, 3f);
-				// Update all instances of treasureScore so there is data consistency
-				//coinScores.treasureScore += 1;
-				//treasureScores.treasureScore += 1;
-				//finalScores.treasureScore += 1;
-				//spedometer.treasureScore += 1;
-				Destroy(other.gameObject);
-			}
+                // Add constraints so that ship does not float randomly on collision
+                rocketBody.constraints = RigidbodyConstraints.FreezeRotationY | RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationZ | RigidbodyConstraints.FreezePositionX;
+				rocketBody.isKinematic = true;
+				transform.rotation = Quaternion.Euler(0, Camera.main.transform.rotation.eulerAngles.y, 0);
+
+                audio.PlayOneShot(treasure, 3f);
+                Destroy(other.gameObject);
+            }
         }
         // If it collides with any other object.
         else
         {
-            audio.PlayOneShot(crash, 5f);
-            StartCoroutine(BlinkTime(2f));
+			// Add constraints so that ship does not float randomly on collision
+			rocketBody.constraints = RigidbodyConstraints.FreezeRotationY | RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationZ | RigidbodyConstraints.FreezePositionX;
+			rocketBody.isKinematic = true;
+			transform.rotation = Quaternion.Euler(0, Camera.main.transform.rotation.eulerAngles.y, 0);
+
             Destroy(other.gameObject);
+            audio.PlayOneShot(crash, 0.5f);
+            StartCoroutine(BlinkTime(2f));
         } 
     }
 

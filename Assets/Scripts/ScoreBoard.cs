@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class ScoreBoard : MonoBehaviour
 {
-    public float coinScore;
+    public float diamondScore;
     public float treasureScore;
     public float totalCoins;
     public float totalTreasure;
@@ -43,7 +43,7 @@ public class ScoreBoard : MonoBehaviour
         if (player.gameOver)
         {
             //finalScore.gameObject.SetActive(true);
-            finalScore.text = "Final Score: " + (treasureScore + coinScore) + "/" + (totalCoins + totalTreasure);
+            finalScore.text = "Final Score: " + (diamondScore) + "/" + (totalCoins);
             exhaleScore.text = "";
             spedometerText.text = "";
         }
@@ -51,7 +51,7 @@ public class ScoreBoard : MonoBehaviour
         {
             finalScore.text = "";
             spedometerText.text = "Speed: " + player.speed + " mph";
-            exhaleScore.text = "Coins: " + coinScore;
+            exhaleScore.text = "Diamonds: " + diamondScore;
         }
     }
 }

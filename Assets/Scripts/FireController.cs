@@ -23,7 +23,7 @@ public class FireController : MonoBehaviour
     {
         transform.position = player.transform.position + offset;
         transform.rotation = Quaternion.Euler(player.transform.rotation.eulerAngles.x + 180, player.transform.rotation.eulerAngles.y, transform.rotation.eulerAngles.z);
-        if (playerScript.exhaleIsOn)
+        if (playerScript.exhaleIsOn && playerScript.exhalePhase)
         {
             flames.Play();
         }

@@ -6,7 +6,8 @@ public class RocketController : MonoBehaviour
 {
     public bool exhalePhase = false;
     public bool inhalePhase = true;
-    public bool inhaleSuccess = false;
+    public GameObject miniDiamond;
+    public GameObject miniDiamondTwo;
 
     // Public target times can be adjusted by doctor/patient.
     public float exhaleTargetTime = 1f;
@@ -21,7 +22,7 @@ public class RocketController : MonoBehaviour
     public bool gameOver = false;
     public float speed;
 
-    public AudioClip coin;
+    public AudioClip diamond;
     public AudioClip crash;
     public AudioClip treasure;
 
@@ -51,8 +52,7 @@ public class RocketController : MonoBehaviour
     // Get the rocket as a rigidbody
     private Rigidbody rocketBody;
 
-    private ScoreBoard treasureScores;
-    private ScoreBoard coinScores;
+    private ScoreBoard diamondScores;
     private ScoreBoard finalScores;
     private ScoreBoard spedometer;
 
@@ -74,8 +74,7 @@ public class RocketController : MonoBehaviour
         audio = GetComponent<AudioSource>();
 
         // Find the score board objects for each respective scoreboard.
-        treasureScores = GameObject.FindGameObjectWithTag("Treasure Score").GetComponent<ScoreBoard>();
-        coinScores = GameObject.FindGameObjectWithTag("Coin Score").GetComponent<ScoreBoard>();
+        diamondScores = GameObject.FindGameObjectWithTag("Coin Score").GetComponent<ScoreBoard>();
         finalScores = GameObject.FindGameObjectWithTag("Final Score").GetComponent<ScoreBoard>();
 		spedometer = GameObject.FindGameObjectWithTag("Spedometer").GetComponent<ScoreBoard>();
 		//spedometer = GameObject.FindGameObjectWithTag("Final Score").GetComponent<ScoreBoard>();
@@ -136,10 +135,10 @@ public class RocketController : MonoBehaviour
 				}
 
 				//TO ALLOW KEY BOARD PLAYABILITY, UNCOMMENT IF LOOP BELOW:
-				if (!Input.GetKey(KeyCode.UpArrow))
-				{
-					exhaleIsOn = false;
-				}
+				//if (!Input.GetKey(KeyCode.UpArrow))
+				//{
+				//	exhaleIsOn = false;
+				//}
 			}
 
             if (inhalePhase && cameraBounds())
@@ -164,10 +163,10 @@ public class RocketController : MonoBehaviour
                 }
 
 				//TO ALLOW KEY BOARD PLAYABILITY, UNCOMMENT IF LOOP BELOW:
-				if (!Input.GetKey(KeyCode.Space))
-				{
-					inhaleIsOn = false;
-				}
+				//if (!Input.GetKey(KeyCode.Space))
+				//{
+				//	inhaleIsOn = false;
+				//}
 			}
 
             // If the player is neither exhaling or inhaling:
@@ -189,9 +188,9 @@ public class RocketController : MonoBehaviour
 					breakTime = Time.time;
 
                     // Let the spaceship float for a duration of time. Do not do this on start cycle.
-                    if (breakDuration <= 0.5f && exhaleDuration > 0)
+                    if (breakDuration <= 0.3f && exhaleDuration > 0)
                     {
-                        rocketBody.AddRelativeForce(new Vector3(cameraVector.x, 0, cameraVector.z) * 3f, ForceMode.VelocityChange);
+                        rocketBody.AddRelativeForce(new Vector3(cameraVector.x, 0, cameraVector.z) * 4f, ForceMode.VelocityChange);
                     }
                     // Negate the force added to the rocket via exhalation.
                     else
@@ -289,7 +288,7 @@ public class RocketController : MonoBehaviour
     // Determine actions when rocket collides with other gameObjects
     private void OnTriggerEnter(Collider other)
     {
-        // If it collides with a coin.
+        // If it collides with a diamond.
         if (other.gameObject.CompareTag("Diamond") || other.gameObject.CompareTag("Diamond Two"))
         {
             if (exhalePhase)
@@ -300,13 +299,14 @@ public class RocketController : MonoBehaviour
 				transform.rotation = Quaternion.Euler(0, Camera.main.transform.rotation.eulerAngles.y, 0);
 
                 Destroy(other.gameObject);
-                audio.PlayOneShot(coin, 5f);
+                audio.PlayOneShot(diamond, 5f);
 
-                // Update all instances of coinScore so there is data consistency
-                coinScores.coinScore += 1;
-                treasureScores.coinScore += 1;
-                finalScores.coinScore += 1;
-                spedometer.coinScore += 1;
+                // Create mini diamonds for score UI
+                Instantiate(miniDiamond, new Vector3(transform.position.x, transform.position.y + 10, transform.position.z), Quaternion.Euler(90, 180, 0));
+
+                // Update all instances of diamondScore so there is data consistency
+                finalScores.diamondScore += 1;
+                spedometer.diamondScore += 1;
             }
         }
         // If it collides with a cloud.
@@ -334,6 +334,12 @@ public class RocketController : MonoBehaviour
             Destroy(other.gameObject);
             audio.PlayOneShot(crash, 0.5f);
             StartCoroutine(BlinkTime(2f));
+            // Create mini diamonds for score UI
+            GameObject board = GameObject.FindGameObjectWithTag("Coin Score");
+            if (diamondScores.diamondScore >= 1)
+            {
+                Instantiate(miniDiamondTwo, new Vector3(board.transform.position.x, board.transform.position.y - 3, board.transform.position.z), Quaternion.Euler(90, 180, 0));
+            }
         } 
     }
 

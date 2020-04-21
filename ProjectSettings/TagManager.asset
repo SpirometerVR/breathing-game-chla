@@ -16,6 +16,9 @@ TagManager:
   - Planet
   - Diamond Two
   - Fuel
+  - Mini Diamond
+  - Explode
+  - Mini Diamond Two
   layers:
   - Default
   - TransparentFX

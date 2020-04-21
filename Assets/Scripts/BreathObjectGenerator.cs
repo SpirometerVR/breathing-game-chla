@@ -131,7 +131,7 @@ public class BreathObjectGenerator : MonoBehaviour
         }
         isCoroutineExecutingCoin = true;
         // Wait 1.5 seconds to spawn the first coin
-        yield return new WaitForSeconds(1.5f);
+        yield return new WaitForSeconds(2f);
         SpawnFirstCoin();
         isCoroutineExecutingCoin = false;
     }

@@ -6,7 +6,9 @@ using UnityEngine;
 public class CameraController : MonoBehaviour
 {
     public GameObject player;
+    // Regular offset for camera.
     private static Vector3 offset = new Vector3(0f, 38f, -54f);
+    // Offset when player is exhaling to simulate acceleration.
     private Vector3 zoomOffset = Vector3.Scale(offset, new Vector3(0f, 1.2f, 1.7f));
 
     private float speed = 10f;
@@ -27,8 +29,8 @@ public class CameraController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        // Keep camera at a position behind the player.
         transform.position = player.transform.position + offset;
-
         isZoomed = (playerScript.exhalePhase && playerScript.exhaleIsOn) ? true : false;
 
         // Push camera back on exhale

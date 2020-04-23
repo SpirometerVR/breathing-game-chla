@@ -8,12 +8,14 @@ public class DiamondFall : MonoBehaviour
     private GameObject scoreBoard;
     private RocketController playerScript;
     private float speed = 25f;
+
     private Vector3 offset = new Vector3(0, -3, 0);
     private ScoreBoard diamondScores;
 
     // Start is called before the first frame update
     void Start()
     {
+        // Find the appropriate Game Objects.
         player = GameObject.FindGameObjectWithTag("Rocket");
         playerScript = player.GetComponent<RocketController>();
         scoreBoard = GameObject.FindGameObjectWithTag("Coin Score");
@@ -23,12 +25,14 @@ public class DiamondFall : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        // Keep the diamonds close to the scoreboard when player is exhaling.
         if (playerScript.exhaleIsOn && playerScript.exhalePhase)
         {
             transform.position = new Vector3(scoreBoard.transform.position.x, scoreBoard.transform.position.y, scoreBoard.transform.position.z) + offset;
         }
+        // Move the diamonds away from the scoreboard, destroy them, and reduce score by one.
         else
-        { 
+        {
             // Adding translation in the Z due to rotation. This is equivalent to negative Y axis movement.
             transform.Translate(new Vector3(0, 0, 1) * speed * Time.deltaTime);
             if (transform.position.y < player.transform.position.y)

@@ -4,8 +4,6 @@
 TagManager:
   serializedVersion: 2
   tags:
-  - Treasure Score
-  - Coin Score
   - Final Score
   - Spedometer
   - Rocket
@@ -19,6 +17,13 @@ TagManager:
   - Mini Diamond
   - Explode
   - Mini Diamond Two
+  - Right Thruster
+  - Middle Thruster
+  - Left Thruster
+  - Middle Fuel
+  - Left Fuel
+  - Right Fuel
+  - Diamond Score
   layers:
   - Default
   - TransparentFX

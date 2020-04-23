@@ -4,24 +4,24 @@ using UnityEngine;
 
 public class BreathObjectGenerator : MonoBehaviour
 {
-    public GameObject coinOne;
-    public GameObject remainingCoins;
-    public GameObject cloud;
+    public GameObject diamondOne;
+    public GameObject remainingDiamonds;
+    public GameObject fuel;
 
     private GameObject player;
     private RocketController playerScript;
 
-    private int coinCount = 1;
-    private bool firstCoinSpawn = false;
+    private int diamondCount = 1;
+    private bool firstDiamondSpawn = false;
     private bool inhaleSpawned = false;
     private bool exhaleSpawned = false;
-    private float initialCoinDistance = 130f;
-    private float remainingCoinDistance = 0f;
+    private float initialDiamondDistance = 130f;
+    private float remainingDiamondDistance = 0f;
 
-    private bool isCoroutineExecutingCloud = false;
-    private bool isCoroutineExecutingCoin = false;
-    private bool isCoroutineExecutingCoinDestroy = false;
-    private bool isCoroutineExecutingCloudDestroy = false;
+    private bool isCoroutineExecutingFuel = false;
+    private bool isCoroutineExecutingDiamond = false;
+    private bool isCoroutineExecutingDiamondDestroy = false;
+    private bool isCoroutineExecutingFuelDestroy = false;
 
     // Start is called before the first frame update
     void Start()
@@ -37,36 +37,36 @@ public class BreathObjectGenerator : MonoBehaviour
         {
             if (playerScript.inhalePhase)
             {
-                // Destroy any existing coins for the inhale phase.
-                StartCoroutine(DestroyCoins());
-                // If the clouds have not been spawned yet, spawn them.
+                // Destroy any existing diamonds for the inhale phase.
+                StartCoroutine(DestroyDiamonds());
+                // If the fuels have not been spawned yet, spawn them.
                 if (!inhaleSpawned)
                 {
-                    StartCoroutine(SpawnCloudItems());
+                    StartCoroutine(SpawnFuelItems());
                 }
             }
             if (playerScript.exhalePhase)
             {
-                //Destroy all cloud objects still in the game during exhale phase.
-                StartCoroutine(DestroyCloud());
-                // If the coins have not been spawned yet, spawn them.
+                //Destroy all fuel objects still in the game during exhale phase.
+                StartCoroutine(DestroyFuel());
+                // If the diamonds have not been spawned yet, spawn them.
                 if (!exhaleSpawned)
                 {
-                    // Spawn the first coin first to determine the position of the other coins.
-                    if (!firstCoinSpawn)
+                    // Spawn the first diamond first to determine the position of the other diamonds.
+                    if (!firstDiamondSpawn)
                     {
-                        StartCoroutine(SpawnCoinItems());
+                        StartCoroutine(SpawnDiamondItems());
                     }
-                    // Spawn the remaining coins based on the exhale duration.
+                    // Spawn the remaining diamonds based on the exhale duration.
                     else
                     {
-                        SpawnRemainingCoins();
-                        // Reset the coin flags.
-                        if (coinCount == playerScript.exhaleTargetTime)
+                        SpawnRemainingDiamonds();
+                        // Reset the diamond flags.
+                        if (diamondCount == playerScript.exhaleTargetTime)
                         {
-                            coinCount = 1;
-                            firstCoinSpawn = false;
-                            remainingCoinDistance = 0f;
+                            diamondCount = 1;
+                            firstDiamondSpawn = false;
+                            remainingDiamondDistance = 0f;
                             exhaleSpawned = true;
                         }
                     }
@@ -75,44 +75,46 @@ public class BreathObjectGenerator : MonoBehaviour
         }
     }
 
-    // Spawn the first coin in front of the Rocket.
-    private void SpawnFirstCoin()
+    // Spawn the first diamond in front of the Rocket.
+    private void SpawnFirstDiamond()
     {
         Vector3 playerPosition = transform.position;
-        // Need cross product to produce coins in front of Rocket.
+        // Need cross product to produce diamonds in front of Rocket.
         Vector3 playerForward = Vector3.Cross(transform.forward, new Vector3(0, 1, 0));
-        // Determine the right rotation for the coin gameObject.
+        // Determine the right rotation for the diamond gameObject.
         Quaternion playerRotation = Quaternion.Euler(90, 180, 0);
-        // Determine the spawn position of the first coin based on the Rocket's position.
-        Vector3 spawnPosition = new Vector3(RandomXPosition(), 0, playerPosition.z) + new Vector3(0,0,1) * initialCoinDistance;
-        Instantiate(coinOne, spawnPosition, playerRotation);
-        firstCoinSpawn = true;
+        // Determine the spawn position of the first diamond based on the Rocket's position.
+        Vector3 spawnPosition = new Vector3(transform.position.x + RandomXPosition(), 0, playerPosition.z) + new Vector3(0,0,1) * initialDiamondDistance;
+        Instantiate(diamondOne, spawnPosition, playerRotation);
+        firstDiamondSpawn = true;
         inhaleSpawned = false;
     }
 
-    // Spawn the remaining number of coins one after another. The number is based on the exhaleDuration float from the RocketController.
-    private void SpawnRemainingCoins()
+    // Spawn the remaining number of diamonds one after another. The number is based on the exhaleDuration float from the RocketController.
+    private void SpawnRemainingDiamonds()
     {
-        // Need cross product to produce coins in front of Rocket.
+        // Need cross product to produce diamonds in front of Rocket.
         Vector3 playerForward = Vector3.Cross(transform.forward, new Vector3(0, 1, 0));
         Quaternion playerRotation = Quaternion.Euler(90, 180, 0);
-        // Continue spawning coins until their target quantity is reached.
-        if (coinCount < playerScript.exhaleTargetTime)
+        // Continue spawning diamonds until their target quantity is reached.
+        if (diamondCount < playerScript.exhaleTargetTime)
         {
-            remainingCoinDistance += 320;
-            // Spawn the coin behind the most recent coin spawned.
-            Vector3 spawnPosition = GameObject.FindGameObjectWithTag("Diamond").transform.position + new Vector3(RandomXPosition() / remainingCoinDistance, 0, 1) * remainingCoinDistance;
-            Instantiate(remainingCoins, spawnPosition, playerRotation);
-            coinCount++;
+            remainingDiamondDistance += 320;
+            // Spawn the diamond behind the most recent diamond spawned.
+            Vector3 spawnPosition = GameObject.FindGameObjectWithTag("Diamond").transform.position + new Vector3(transform.position.x + RandomXPosition() / remainingDiamondDistance, 0, 1) * remainingDiamondDistance;
+            Instantiate(remainingDiamonds, spawnPosition, playerRotation);
+            diamondCount++;
         }
     }
 
-    private void SpawnCloud()
+    private void SpawnFuel()
     {
         Vector3 playerPosition = new Vector3(transform.position.x, transform.position.y, transform.position.z);
         Quaternion playerRotation = Quaternion.Euler(0, 0, 0);
+        // Spawn fuel relative to the rocket position.
 		Vector3 spawnPosition = playerPosition + new Vector3(0, 0, -30);
-		Instantiate(cloud, spawnPosition, playerRotation);
+		Instantiate(fuel, spawnPosition, playerRotation);
+        // Set flags so that inhale spawn is true and update cycle counter.
         inhaleSpawned = true;
         exhaleSpawned = false;
         playerScript.cycleCounter += 1;
@@ -123,61 +125,61 @@ public class BreathObjectGenerator : MonoBehaviour
         return Random.Range(-50, 50);
     }
 
-    private IEnumerator SpawnCoinItems()
+    private IEnumerator SpawnDiamondItems()
     {
-        if (isCoroutineExecutingCoin)
+        if (isCoroutineExecutingDiamond)
         {
             yield break;
         }
-        isCoroutineExecutingCoin = true;
-        // Wait 1.5 seconds to spawn the first coin
+        isCoroutineExecutingDiamond = true;
+        // Wait 2 seconds to spawn the first diamond
         yield return new WaitForSeconds(2f);
-        SpawnFirstCoin();
-        isCoroutineExecutingCoin = false;
+        SpawnFirstDiamond();
+        isCoroutineExecutingDiamond = false;
     }
 
 
-    private IEnumerator DestroyCoins()
+    private IEnumerator DestroyDiamonds()
     {
-        if(isCoroutineExecutingCoinDestroy)
+        if(isCoroutineExecutingDiamondDestroy)
         {
             yield break;
         }
-        isCoroutineExecutingCoinDestroy = true;
-        // Wait 0.8 seconds before destroying coins if the exhale is off
-        yield return new WaitForSeconds(2f);
+        isCoroutineExecutingDiamondDestroy = true;
+        // Wait 1.5 seconds before destroying diamonds if the exhale is off
+        yield return new WaitForSeconds(1f);
+        // Destroy all diamond objects.
         Destroy(GameObject.FindGameObjectWithTag("Diamond"));
         Destroy(GameObject.FindGameObjectWithTag("Diamond Two"));
-        isCoroutineExecutingCoinDestroy = false;
+        isCoroutineExecutingDiamondDestroy = false;
     }
 
-    private IEnumerator SpawnCloudItems()
+    private IEnumerator SpawnFuelItems()
     {
-        if (isCoroutineExecutingCloud)
+        if (isCoroutineExecutingFuel)
         {
             yield break;
         }
-        isCoroutineExecutingCloud = true;
-        // Wait 3.5 seconds to spawn the new clouds
+        isCoroutineExecutingFuel = true;
+        // Wait 3.5 seconds to spawn the new fuels
         yield return new WaitForSeconds(3.5f);
-        SpawnCloud();
-        isCoroutineExecutingCloud = false;
+        SpawnFuel();
+        isCoroutineExecutingFuel = false;
     }
 
-    private IEnumerator DestroyCloud()
+    private IEnumerator DestroyFuel()
     {
-        if (isCoroutineExecutingCloudDestroy)
+        if (isCoroutineExecutingFuelDestroy)
         {
             yield break;
         }
-        isCoroutineExecutingCloudDestroy = true;
-		// Wait 0.8 seconds to destory the remaining clouds
+        isCoroutineExecutingFuelDestroy = true;
+		// Wait 0.8 seconds to destory the remaining fuels
 		yield return new WaitForSeconds(0.8f);
-		GameObject[] fuels = GameObject.FindGameObjectsWithTag("Fuel");
-        foreach (GameObject fuel in fuels)
-		{
-            GameObject.Destroy(fuel);
-        }
-        isCoroutineExecutingCloudDestroy = false;
+        // Destroy all fuel objects.
+		Destroy(GameObject.FindGameObjectWithTag("Right Fuel"));
+        Destroy(GameObject.FindGameObjectWithTag("Left Fuel"));
+        Destroy(GameObject.FindGameObjectWithTag("Middle Fuel"));
+        isCoroutineExecutingFuelDestroy = false;
     }
 }

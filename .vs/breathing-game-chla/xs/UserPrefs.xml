@@ -1,15 +1,12 @@
 ﻿<Properties StartupConfiguration="{C3DDFAB1-E380-48AE-A3AE-82A0F842DC85}|">
-  <MonoDevelop.Ide.ItemProperties.Oculus.VR.Scripts.Editor PreferredExecutionTarget="2264962c-8c2c-4707-bce1-1a0c12949fce" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/DiamondFall.cs">
+  <MonoDevelop.Ide.ItemProperties.Oculus.VR.Scripts.Editor PreferredExecutionTarget="0d4cbded-00d3-4c38-a2f1-81a7b1503c8a" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/DiamondController.cs">
     <Files>
-      <File FileName="Assets/Scripts/FuelController.cs" Line="9" Column="23" />
-      <File FileName="Assets/Scripts/RocketController.cs" Line="339" Column="48" />
-      <File FileName="Assets/Scripts/ScoreBoard.cs" Line="46" Column="54" />
-      <File FileName="Assets/Scripts/BreathObjectGenerator.cs" Line="30" Column="64" />
-      <File FileName="Assets/Scripts/DiamondController.cs" Line="12" Column="1" />
-      <File FileName="Assets/Scripts/FireController.cs" Line="17" Column="1" />
-      <File FileName="Assets/Scripts/DiamondFall.cs" Line="21" Column="6" />
-      <File FileName="Assets/Scripts/TextMover.cs" Line="14" Column="1" />
+      <File FileName="Assets/Scripts/RocketController.cs" Line="342" Column="45" />
+      <File FileName="Assets/Scripts/SetRenderQueue.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/ScoreBoard.cs" Line="8" Column="28" />
+      <File FileName="Assets/Scripts/BreathObjectGenerator.cs" Line="104" Column="1" />
+      <File FileName="Assets/Scripts/DiamondController.cs" Line="16" Column="17" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">

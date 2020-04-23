@@ -4,8 +4,10 @@ using UnityEngine;
 
 public class RocketController : MonoBehaviour
 {
+    // Flags for exhale and inhale phases.
     public bool exhalePhase = false;
     public bool inhalePhase = true;
+
     public GameObject miniDiamond;
     public GameObject miniDiamondTwo;
 
@@ -20,12 +22,16 @@ public class RocketController : MonoBehaviour
 	public float cycles = 5f;
     public float cycleCounter = 0f;
     public bool gameOver = false;
+
+    // Debugging the spirometer
     public float speed;
 
+    // Music that will be played when items are collected.
     public AudioClip diamond;
     public AudioClip crash;
-    public AudioClip treasure;
+    public AudioClip fuel;
 
+    // Variables to track inhale & exhale duration.
     private float downTime = 0f;
     private float upTime = 0f;
 	private float breakTime = 0f;
@@ -37,6 +43,7 @@ public class RocketController : MonoBehaviour
     public bool inhaleIsOn = false;
     public bool breakIsOn = false;
 
+    // Target threshold values for inhale and exhale.
     private float exhaleThresh = 1470f;
     private float inhaleTresh = 1200f;
     private float steadyThresh = 1340f;
@@ -74,10 +81,9 @@ public class RocketController : MonoBehaviour
         audio = GetComponent<AudioSource>();
 
         // Find the score board objects for each respective scoreboard.
-        diamondScores = GameObject.FindGameObjectWithTag("Coin Score").GetComponent<ScoreBoard>();
+        diamondScores = GameObject.FindGameObjectWithTag("Diamond Score").GetComponent<ScoreBoard>();
         finalScores = GameObject.FindGameObjectWithTag("Final Score").GetComponent<ScoreBoard>();
 		spedometer = GameObject.FindGameObjectWithTag("Spedometer").GetComponent<ScoreBoard>();
-		//spedometer = GameObject.FindGameObjectWithTag("Final Score").GetComponent<ScoreBoard>();
 
 		// Manually set inhale phase to true at start of game.
 		inhalePhase = true;
@@ -93,7 +99,9 @@ public class RocketController : MonoBehaviour
         if (cycleCounter > cycles)
         {
             gameOver = true;
-            Destroy(GameObject.FindGameObjectWithTag("Cloud"));
+            Destroy(GameObject.FindGameObjectWithTag("Right Fuel"));
+            Destroy(GameObject.FindGameObjectWithTag("Left Fuel"));
+            Destroy(GameObject.FindGameObjectWithTag("Middle Fuel"));
         }
         // Otherwise, if the game is not over:
         if (!gameOver)
@@ -105,10 +113,7 @@ public class RocketController : MonoBehaviour
 
 			// Change rocket direction based on camera in VR.
 			transform.rotation = Quaternion.Euler(transform.rotation.eulerAngles.x, Camera.main.transform.rotation.eulerAngles.y, transform.rotation.eulerAngles.z);
-
-            // Take cross product to ensure that rocket goes forward.
             Vector3 cameraVector = new Vector3(Camera.main.transform.forward.x, 0, Camera.main.transform.forward.z);
-            Vector3 forwardDir = Vector3.Cross(cameraVector, new Vector3(0, 1, 0));
 
             // Accelerate rocket when player is exhaling or using upArrow input.
             if (exhalePhase && cameraBounds())
@@ -134,16 +139,16 @@ public class RocketController : MonoBehaviour
 					breakStart = Time.time;
 				}
 
-				//TO ALLOW KEY BOARD PLAYABILITY, UNCOMMENT IF LOOP BELOW:
-				//if (!Input.GetKey(KeyCode.UpArrow))
-				//{
-				//	exhaleIsOn = false;
-				//}
+				//TO ALLOW KEY BOARD PLAYABILITY, UNCOMMENT IF STATEMENT BELOW:
+				if (!Input.GetKey(KeyCode.UpArrow))
+				{
+					exhaleIsOn = false;
+				}
 			}
 
             if (inhalePhase && cameraBounds())
             {
-                // Pull air clouds towards the rocket when inhaling or using Space key.
+                // Pull fuel towards the rocket when inhaling or using Space key.
                 if (inhaleIsOn ||  Input.GetKey(KeyCode.Space))
                 {
                     if (Input.GetKey(KeyCode.Space))
@@ -163,16 +168,16 @@ public class RocketController : MonoBehaviour
                 }
 
 				//TO ALLOW KEY BOARD PLAYABILITY, UNCOMMENT IF LOOP BELOW:
-				//if (!Input.GetKey(KeyCode.Space))
-				//{
-				//	inhaleIsOn = false;
-				//}
+				if (!Input.GetKey(KeyCode.Space))
+				{
+					inhaleIsOn = false;
+				}
 			}
 
-            // If the player is neither exhaling or inhaling:
+            // If the player is neither exhaling nor inhaling:
             if (!exhaleIsOn && !inhaleIsOn)
             {
-                // Repeat code for controller input
+                // Repeat code for controller input. This needs to be done so that there are no issues with VR input.
                 if (!Input.GetKey(KeyCode.Space) && !Input.GetKey(KeyCode.UpArrow))
                 {
                     inhaleIsOn = false;
@@ -199,14 +204,14 @@ public class RocketController : MonoBehaviour
                         rocketBody.AddForce(oppositeDirX);
                     }
 
-                    // Only count exhale and inhales that are longer than 0.5 second to remove erroneous air flow data.
+                    // Only count exhale and inhales that are longer than 0.3 second to remove erroneous air flow data.
                     // Once inhale or exhale is conducted and completed, switch cycles.
-                    if (inhalePhase && inhaleDuration >= 0.5)
+                    if (inhalePhase && inhaleDuration >= 0.3)
                     {
                             inhalePhase = false;
                             exhalePhase = true;
                     }
-                    if (exhalePhase && exhaleDuration >= 0.5)
+                    if (exhalePhase && exhaleDuration >= 0.3)
                     {
                             inhalePhase = true;
                             exhalePhase = false;
@@ -236,14 +241,14 @@ public class RocketController : MonoBehaviour
                     rocketBody.AddForce(oppositeDir);
                 }
 
-                // Only count exhale and inhales that are longer than 0.5 second to remove erroneous air flow data.
+                // Only count exhale and inhales that are longer than 0.3 second to remove erroneous air flow data.
                 // Once inhale or exhale is conducted and completed, switch cycles.
-                if (inhalePhase && inhaleDuration >= 0.5)
+                if (inhalePhase && inhaleDuration >= 0.3)
                 {
                     inhalePhase = false;
                     exhalePhase = true;
                 }
-                if (exhalePhase && exhaleDuration >= 0.5)
+                if (exhalePhase && exhaleDuration >= 0.3)
                 {
                     inhalePhase = true;
                     exhalePhase = false;
@@ -260,8 +265,8 @@ public class RocketController : MonoBehaviour
     private void ReceiveSpirometerData(OscMessage message)
     {
         float breathVal = message.GetFloat(0);
+        // Debugging purposes.
 		speed = breathVal;
-		//speed = Camera.main.transform.rotation.eulerAngles.y;
 		Debug.Log(breathVal);
         if (breathVal >= exhaleThresh)
         {
@@ -301,7 +306,7 @@ public class RocketController : MonoBehaviour
                 Destroy(other.gameObject);
                 audio.PlayOneShot(diamond, 5f);
 
-                // Create mini diamonds for score UI
+                // Create mini diamonds for score UI. See DiamondController for controller script.
                 Instantiate(miniDiamond, new Vector3(transform.position.x, transform.position.y + 10, transform.position.z), Quaternion.Euler(90, 180, 0));
 
                 // Update all instances of diamondScore so there is data consistency
@@ -309,7 +314,7 @@ public class RocketController : MonoBehaviour
                 spedometer.diamondScore += 1;
             }
         }
-        // If it collides with a cloud.
+        // If it collides with fuel.
         else if (other.gameObject.CompareTag("Fuel"))
         {
             if (inhalePhase)
@@ -318,9 +323,6 @@ public class RocketController : MonoBehaviour
                 rocketBody.constraints = RigidbodyConstraints.FreezeRotationY | RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationZ | RigidbodyConstraints.FreezePositionX;
 				rocketBody.isKinematic = true;
 				transform.rotation = Quaternion.Euler(0, Camera.main.transform.rotation.eulerAngles.y, 0);
-
-                audio.PlayOneShot(treasure, 3f);
-                Destroy(other.gameObject);
             }
         }
         // If it collides with any other object.
@@ -333,9 +335,11 @@ public class RocketController : MonoBehaviour
 
             Destroy(other.gameObject);
             audio.PlayOneShot(crash, 0.5f);
+            // Blink ship on crash.
             StartCoroutine(BlinkTime(2f));
-            // Create mini diamonds for score UI
-            GameObject board = GameObject.FindGameObjectWithTag("Coin Score");
+            // Create mini diamonds for score UI. See DiamondFall for controller script.
+            GameObject board = GameObject.FindGameObjectWithTag("Diamond Score");
+            // Do not let score be negative.
             if (diamondScores.diamondScore >= 1)
             {
                 Instantiate(miniDiamondTwo, new Vector3(board.transform.position.x, board.transform.position.y - 3, board.transform.position.z), Quaternion.Euler(90, 180, 0));

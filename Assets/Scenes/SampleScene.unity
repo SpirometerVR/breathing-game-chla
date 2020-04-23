@@ -236,6 +236,36 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 1510365282973292}
+--- !u!1 &180094855
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 180094856}
+  m_Layer: 0
+  m_Name: Middle Thruster
+  m_TagString: Middle Thruster
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &180094856
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 180094855}
+  m_LocalRotation: {x: -0.000000021855694, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: -0.33600023, z: -5.364}
+  m_LocalScale: {x: 0.4, y: 0.4, z: 0.4}
+  m_Children: []
+  m_Father: {fileID: 1510365282973300}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &317082000
 GameObject:
   m_ObjectHideFlags: 0
@@ -14771,8 +14801,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   diamondScore: 0
-  treasureScore: 0
-  totalCoins: 0
+  totalDiamonds: 0
   totalTreasure: 0
 --- !u!114 &1676877436
 MonoBehaviour:
@@ -14787,8 +14816,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   diamondScore: 0
-  treasureScore: 0
-  totalCoins: 0
+  totalDiamonds: 0
   totalTreasure: 0
 --- !u!114 &1676877437
 MonoBehaviour:
@@ -14882,8 +14910,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   diamondScore: 0
-  treasureScore: 0
-  totalCoins: 0
+  totalDiamonds: 0
   totalTreasure: 0
 --- !u!114 &1726357781
 MonoBehaviour:
@@ -14938,9 +14965,38 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   diamondScore: 0
-  treasureScore: 0
-  totalCoins: 0
+  totalDiamonds: 0
   totalTreasure: 0
+--- !u!1 &1751831138
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1751831139}
+  m_Layer: 0
+  m_Name: Left Thruster
+  m_TagString: Left Thruster
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1751831139
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1751831138}
+  m_LocalRotation: {x: -0.000000021855694, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -1.6280001, y: -1.0360001, z: -4.668}
+  m_LocalScale: {x: 0.4, y: 0.4, z: 0.4}
+  m_Children: []
+  m_Father: {fileID: 1510365282973300}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1857364593
 GameObject:
   m_ObjectHideFlags: 0
@@ -14956,7 +15012,7 @@ GameObject:
   - component: {fileID: 1857364598}
   m_Layer: 5
   m_Name: ScoreCard (1)
-  m_TagString: Coin Score
+  m_TagString: Diamond Score
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -15033,8 +15089,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   diamondScore: 0
-  treasureScore: 0
-  totalCoins: 0
+  totalDiamonds: 0
   totalTreasure: 0
 --- !u!65 &1857364598
 BoxCollider:
@@ -15049,6 +15104,36 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 116.4353, y: 19.656532, z: 22.914207}
   m_Center: {x: 40.2554, y: -9.328266, z: -10.957104}
+--- !u!1 &2077169863
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2077169864}
+  m_Layer: 0
+  m_Name: Right Thruster
+  m_TagString: Right Thruster
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2077169864
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2077169863}
+  m_LocalRotation: {x: -0.000000021855694, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 1.6280001, y: -1.0360001, z: -4.668}
+  m_LocalScale: {x: 0.8, y: 0.8, z: 0.8}
+  m_Children: []
+  m_Father: {fileID: 1510365282973300}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1510365282973292 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 4597398391922625609, guid: 4c8596437b30446d7adc86bbe78e6123,
@@ -15151,6 +15236,12 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!4 &1510365282973300 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 4595818365191411313, guid: 4c8596437b30446d7adc86bbe78e6123,
+    type: 3}
+  m_PrefabInstance: {fileID: 4596029874449955365}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &4596029874449955365
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -15285,6 +15376,11 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 8082968845016491168, guid: 445162bb2b60e4f97a353d02c83059a5,
         type: 3}
+    - target: {fileID: 4596029872646980628, guid: 4c8596437b30446d7adc86bbe78e6123,
+        type: 3}
+      propertyPath: fuel
+      value: 
+      objectReference: {fileID: 8300000, guid: c1604d2112a694936bb388afe36db635, type: 3}
     - target: {fileID: 4596029872646980629, guid: 4c8596437b30446d7adc86bbe78e6123,
         type: 3}
       propertyPath: coinOne
@@ -15301,7 +15397,25 @@ PrefabInstance:
         type: 3}
       propertyPath: cloud
       value: 
-      objectReference: {fileID: 845756236948447716, guid: 07d8a99032b0c43438926ac5f4e68662,
+      objectReference: {fileID: 3914295659124034010, guid: 9553406d7d6454169828757c62ed3a00,
+        type: 3}
+    - target: {fileID: 4596029872646980629, guid: 4c8596437b30446d7adc86bbe78e6123,
+        type: 3}
+      propertyPath: diamondOne
+      value: 
+      objectReference: {fileID: 8082968845016491168, guid: 8d52613662d004d8b911c3b001ee7a84,
+        type: 3}
+    - target: {fileID: 4596029872646980629, guid: 4c8596437b30446d7adc86bbe78e6123,
+        type: 3}
+      propertyPath: remainingDiamonds
+      value: 
+      objectReference: {fileID: 8082968845016491168, guid: feab7af7be4594c7c973e23bcb50d5c4,
+        type: 3}
+    - target: {fileID: 4596029872646980629, guid: 4c8596437b30446d7adc86bbe78e6123,
+        type: 3}
+      propertyPath: fuel
+      value: 
+      objectReference: {fileID: 3914295659124034010, guid: 9553406d7d6454169828757c62ed3a00,
         type: 3}
     - target: {fileID: 4597398391922625609, guid: 4c8596437b30446d7adc86bbe78e6123,
         type: 3}

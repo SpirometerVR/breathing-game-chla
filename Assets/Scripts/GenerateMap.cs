@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-// Additional class to create Ocean tiles.
+// Additional class to create Space tiles.
 public class Tile
 {
     public GameObject theTile;
@@ -17,12 +17,13 @@ public class Tile
 
 public class GenerateMap : MonoBehaviour
 {
-    // Array with different ocean tiles.
+    // Array with different planets + asteroids for outside view.
     public GameObject[] outsidePlane;
+    // Array with different asteroids for inside view.
     public GameObject[] insidePlane;
     public GameObject player;
 
-    // Ocean prefab size.
+    // Space prefab size.
     private int planeSize = 500;
 
     // Number of additional tiles on the Z and X axes.
@@ -31,7 +32,7 @@ public class GenerateMap : MonoBehaviour
 
     Vector3 startPos;
 
-    // Store ocean tiles by position.
+    // Store space tiles by position.
     Hashtable tiles = new Hashtable();
 
     // Start is called before the first frame update
@@ -43,7 +44,7 @@ public class GenerateMap : MonoBehaviour
 
         float updateTime = Time.realtimeSinceStartup;
 
-        // Generate tiles on either side of current tile on Z axis.
+        // Generate tiles on either side of current tile on Z and X axes.
         for (int x = -halfTilesX; x <= halfTilesX; x++)
         {
             for (int z = -halfTilesZ; z <= halfTilesZ; z++)
@@ -55,7 +56,7 @@ public class GenerateMap : MonoBehaviour
                 {
                     gbj = (GameObject)Instantiate(outsidePlane[RandomPlaneGeneratorOutside()], pos, Quaternion.identity);
                 }
-                // If it is a tile on the right side, only choose from planets with planets, but rotate plane 180.
+                // If it is a tile on the right side, only choose from planes with planets, but rotate plane 180.
                 else if (x == halfTilesX)
                 {
                     GameObject planet = outsidePlane[RandomPlaneGeneratorOutside()];
@@ -66,8 +67,8 @@ public class GenerateMap : MonoBehaviour
                 {
                     gbj = (GameObject)Instantiate(insidePlane[RandomPlaneGeneratorInside()], pos, Quaternion.identity);
                 }
-                // Create Ocean tiles to be stored in HashTable.
-                string tileName = "Ocean_" + ((int)(pos.x)).ToString() + "_" + ((int)(pos.z)).ToString();
+                // Create Space tiles to be stored in HashTable.
+                string tileName = "Space_" + ((int)(pos.x)).ToString() + "_" + ((int)(pos.z)).ToString();
                 gbj.name = tileName;
                 Tile tile = new Tile(gbj, updateTime);
                 tiles.Add(tileName, tile);
@@ -79,11 +80,11 @@ public class GenerateMap : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        // Determine how far player moved from last Ocean tile update.
+        // Determine how far player moved from last Space tile update.
         int xMove = (int)(player.transform.position.x - startPos.x);
         int zMove = (int)(player.transform.position.z - startPos.z);
 
-        // If the player's position is close to edge of an Ocean tile, generate a new tile.
+        // If the player's position is close to edge of an Space tile, generate a new tile.
         if ((Mathf.Abs(xMove) >= planeSize || (Mathf.Abs(zMove) >= planeSize)))
         {
             float updateTime = Time.realtimeSinceStartup;
@@ -99,7 +100,7 @@ public class GenerateMap : MonoBehaviour
                 {
                     Vector3 pos = new Vector3((x * (planeSize) + playerX), 0, (z * (planeSize) + playerZ));
 
-                    string tileName = "Ocean_" + ((int)(pos.x)).ToString() + "_" + ((int)(pos.z)).ToString();
+                    string tileName = "Space_" + ((int)(pos.x)).ToString() + "_" + ((int)(pos.z)).ToString();
 
                     // Add new tile if it doesn't exist in hashtable
                     if (!tiles.ContainsKey(tileName))
@@ -135,21 +136,21 @@ public class GenerateMap : MonoBehaviour
 
             // Destroy all tiles that weren't just created or have had their time updated
             // and put new tiles and kept tiles in hashtable
-            Hashtable newOcean = new Hashtable();
-            foreach (Tile ocn in tiles.Values)
+            Hashtable newSpace = new Hashtable();
+            foreach (Tile spc in tiles.Values)
             {
-                if (ocn.creationTime != updateTime)
+                if (spc.creationTime != updateTime)
                 {
-                    Destroy(ocn.theTile);
+                    Destroy(spc.theTile);
                 }
                 else
                 {
-                    // Keep ocean tile.
-                    newOcean.Add(ocn.theTile.name, ocn);
+                    // Keep space tile.
+                    newSpace.Add(spc.theTile.name, spc);
                 }
             }
             // Copy new hashtable to old one.
-            tiles = newOcean;
+            tiles = newSpace;
             // Update start position to current player position.
             startPos = player.transform.position;
         }

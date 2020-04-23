@@ -9,6 +9,7 @@ public class RandomSkybox : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        // Render a random skybox to start the game.
         RenderSettings.skybox = skyBox[Random.Range(0, skyBox.Length)];
     }
 

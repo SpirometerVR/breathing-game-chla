@@ -9,15 +9,6 @@
       <File FileName="Assets/Scripts/BreathObjectGenerator.cs" Line="186" Column="2" />
       <File FileName="Assets/Scripts/OutOfBounds.cs" Line="5" Column="41" />
     </Files>
-    <Pads>
-      <Pad Id="ProjectPad">
-        <State name="__root__">
-          <Node name="breathing-game-chla" expanded="True">
-            <Node name="Assets" expanded="True" selected="True" />
-          </Node>
-        </State>
-      </Pad>
-    </Pads>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.PinnedWatches />
   <DisabledProjects>

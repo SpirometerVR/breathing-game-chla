@@ -1,31 +1,39 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class OutOfBounds : MonoBehaviour
 {
     public GameObject player;
     public RocketController playerScript;
-    private GameObject canvasObject;
+    private GameObject OutOfBoundsCanvas;
+    private Text outOfBoundsText;
+
     // Start is called before the first frame update
     void Start()
     {
         player = GameObject.FindGameObjectWithTag("Rocket");
         playerScript = player.GetComponent<RocketController>();
-        canvasObject = GameObject.FindGameObjectWithTag("Out Of Bounds");
-        canvasObject.SetActive(false);
+        outOfBoundsText = GameObject.FindGameObjectWithTag("Out Of Bounds").GetComponent<Text>();
+        OutOfBoundsCanvas = GameObject.FindGameObjectWithTag("Out Of Bounds Canvas");
     }
 
     // Update is called once per frame
     void Update()
     {
-        if(playerScript.outOfBounds)
+        // Only print error when the camera view is out of bounds.
+        if(playerScript.inBounds)
 		{
-            canvasObject.SetActive(true);
+            // Lock Rotation on X and Z Axis.
+            OutOfBoundsCanvas.transform.rotation = Quaternion.Euler(0, Camera.main.transform.rotation.eulerAngles.y, 0);
+            outOfBoundsText.text = "";
 		}
         else
 		{
-            canvasObject.SetActive(false);
+            // Lock Rotation on X and Z Axis.
+            OutOfBoundsCanvas.transform.rotation = Quaternion.Euler(0, Camera.main.transform.rotation.eulerAngles.y, 0);
+            outOfBoundsText.text = "RETURN TO SHIP";
 		}
     }
 }

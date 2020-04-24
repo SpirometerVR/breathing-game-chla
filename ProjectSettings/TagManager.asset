@@ -25,6 +25,7 @@ TagManager:
   - Right Fuel
   - Diamond Score
   - Out Of Bounds
+  - Out Of Bounds Canvas
   layers:
   - Default
   - TransparentFX

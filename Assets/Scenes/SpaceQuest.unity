@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.23185214, g: 0.23503104, b: 0.27227843, a: 1}
+  m_IndirectSpecularColor: {r: 0.23190945, g: 0.23507786, b: 0.27232572, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -281,7 +281,7 @@ GameObject:
   - component: {fileID: 228129362}
   m_Layer: 5
   m_Name: OutOfBounds
-  m_TagString: Out Of Bounds
+  m_TagString: Out Of Bounds Canvas
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -353,17 +353,17 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 228129357}
-  m_LocalRotation: {x: -0.000000021855694, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 22.28}
-  m_LocalScale: {x: 0.080000006, y: 0.080000006, z: 0.080000006}
+  m_LocalRotation: {x: -0.24459974, y: -0, z: -0, w: 0.96962416}
+  m_LocalPosition: {x: 0, y: 0, z: 110.21173}
+  m_LocalScale: {x: 0.20000002, y: 0.20000002, z: 0.20000002}
   m_Children:
   - {fileID: 2087412161}
-  m_Father: {fileID: 1510365282973300}
-  m_RootOrder: 7
+  m_Father: {fileID: 963194228}
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 1.0879991}
+  m_AnchoredPosition: {x: 0, y: 26.723448}
   m_SizeDelta: {x: 1064, y: 394}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &228129362
@@ -379,6 +379,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 0}
+  playerScript: {fileID: 0}
 --- !u!1 &317082000
 GameObject:
   m_ObjectHideFlags: 0
@@ -10079,7 +10080,8 @@ Transform:
   m_LocalRotation: {x: 0.24459974, y: -0, z: -0, w: 0.96962416}
   m_LocalPosition: {x: 0, y: 38, z: -54}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
+  m_Children:
+  - {fileID: 228129361}
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 28.316002, y: 0, z: 0}
@@ -15260,7 +15262,7 @@ GameObject:
   - component: {fileID: 2087412162}
   m_Layer: 5
   m_Name: Text
-  m_TagString: Untagged
+  m_TagString: Out Of Bounds
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -15315,7 +15317,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 1
     m_LineSpacing: 1
-  m_Text: RETURN TO SHIP
+  m_Text: 
 --- !u!222 &2087412163
 CanvasRenderer:
   m_ObjectHideFlags: 0

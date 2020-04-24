@@ -11,7 +11,7 @@ public class RocketController : MonoBehaviour
     public GameObject miniDiamond;
     public GameObject miniDiamondTwo;
 
-    public bool outOfBounds;
+    public bool inBounds;
 
     // Public target times can be adjusted by doctor/patient.
     public float exhaleTargetTime = 1f;
@@ -370,13 +370,13 @@ public class RocketController : MonoBehaviour
 	{
 		if ((transform.rotation.eulerAngles.y >= 0 && transform.rotation.eulerAngles.y <= 60) || (transform.rotation.eulerAngles.y >= 300 && transform.rotation.eulerAngles.y <= 360))
         {
-			outOfBounds = true;
+			inBounds = true;
 		}
 		else
 		{
-			outOfBounds = false;
+			inBounds = false;
 		}
-        return outOfBounds;
+        return inBounds;
 	}
 }
 

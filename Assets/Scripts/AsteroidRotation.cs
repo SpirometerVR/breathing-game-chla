@@ -9,7 +9,7 @@ public class AsteroidRotation : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        speed = Random.Range(30, 40); 
+        speed = Random.Range(50, 70); 
     }
 
     // Update is called once per frame
@@ -17,5 +17,8 @@ public class AsteroidRotation : MonoBehaviour
     {
         // Rotate the asteroid at a random speed.
         transform.Rotate(Vector3.forward * speed * Time.deltaTime);
+
+        // Rotate on second axis.
+        transform.Rotate(Vector3.up * speed * Time.deltaTime);
     }
 }

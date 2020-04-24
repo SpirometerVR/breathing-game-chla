@@ -11,6 +11,8 @@ public class RocketController : MonoBehaviour
     public GameObject miniDiamond;
     public GameObject miniDiamondTwo;
 
+    public bool outOfBounds;
+
     // Public target times can be adjusted by doctor/patient.
     public float exhaleTargetTime = 1f;
     public float inhaleTargetTime = 1f;
@@ -265,9 +267,10 @@ public class RocketController : MonoBehaviour
     private void ReceiveSpirometerData(OscMessage message)
     {
         float breathVal = message.GetFloat(0);
-        // Debugging purposes.
+		// Debugging purposes.
 		speed = breathVal;
-		Debug.Log(breathVal);
+		Debug.Log(transform.rotation.eulerAngles.y);
+
         if (breathVal >= exhaleThresh)
         {
             exhaleIsOn = true;
@@ -365,15 +368,16 @@ public class RocketController : MonoBehaviour
 	// Only allow player to play when looking in the forward direction.
 	private bool cameraBounds()
 	{
-        //if (transform.rotation.eulerAngles.y <= 45 && transform.rotation.eulerAngles.y >= 45)
-        //{
-        return true;
-        //}
-        //else
-        //{
-        //	return false;
-        //}
-    }
+		if ((transform.rotation.eulerAngles.y >= 0 && transform.rotation.eulerAngles.y <= 60) || (transform.rotation.eulerAngles.y >= 300 && transform.rotation.eulerAngles.y <= 360))
+        {
+			outOfBounds = true;
+		}
+		else
+		{
+			outOfBounds = false;
+		}
+        return outOfBounds;
+	}
 }
 
 

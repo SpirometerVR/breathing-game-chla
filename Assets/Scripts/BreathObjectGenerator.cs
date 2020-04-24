@@ -13,7 +13,7 @@ public class BreathObjectGenerator : MonoBehaviour
 
     private int diamondCount = 1;
     private bool firstDiamondSpawn = false;
-    private bool inhaleSpawned = false;
+    public bool inhaleSpawned = false;
     private bool exhaleSpawned = false;
     private float initialDiamondDistance = 130f;
     private float remainingDiamondDistance = 0f;
@@ -101,7 +101,7 @@ public class BreathObjectGenerator : MonoBehaviour
         {
             remainingDiamondDistance += 320;
             // Spawn the diamond behind the most recent diamond spawned.
-            Vector3 spawnPosition = GameObject.FindGameObjectWithTag("Diamond").transform.position + new Vector3(transform.position.x + RandomXPosition() / remainingDiamondDistance, 0, 1) * remainingDiamondDistance;
+            Vector3 spawnPosition = GameObject.FindGameObjectWithTag("Diamond").transform.position + new Vector3(RandomXPosition() / remainingDiamondDistance, 0, 1) * remainingDiamondDistance;
             Instantiate(remainingDiamonds, spawnPosition, playerRotation);
             diamondCount++;
         }
@@ -177,7 +177,8 @@ public class BreathObjectGenerator : MonoBehaviour
 		// Wait 0.8 seconds to destory the remaining fuels
 		yield return new WaitForSeconds(0.8f);
         // Destroy all fuel objects.
-		Destroy(GameObject.FindGameObjectWithTag("Right Fuel"));
+        Destroy(GameObject.FindGameObjectWithTag("Fuel"));
+        Destroy(GameObject.FindGameObjectWithTag("Right Fuel"));
         Destroy(GameObject.FindGameObjectWithTag("Left Fuel"));
         Destroy(GameObject.FindGameObjectWithTag("Middle Fuel"));
         isCoroutineExecutingFuelDestroy = false;

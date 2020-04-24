@@ -24,8 +24,8 @@ public class FireController : MonoBehaviour
     void Update()
     {
         // Keep the flames at the engine positions.
-        transform.position = player.transform.position + offset;
-        transform.rotation = Quaternion.Euler(player.transform.rotation.eulerAngles.x + 180, player.transform.rotation.eulerAngles.y, transform.rotation.eulerAngles.z);
+        //transform.position = player.transform.position + offset;
+        //transform.rotation = Quaternion.Euler(player.transform.rotation.eulerAngles.x + 180, player.transform.rotation.eulerAngles.y, transform.rotation.eulerAngles.z);
 
         // Only play flames when player is exhaling.
         if (playerScript.exhaleIsOn && playerScript.exhalePhase)

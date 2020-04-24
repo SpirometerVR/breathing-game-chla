@@ -24,6 +24,7 @@ TagManager:
   - Left Fuel
   - Right Fuel
   - Diamond Score
+  - Out Of Bounds
   layers:
   - Default
   - TransparentFX

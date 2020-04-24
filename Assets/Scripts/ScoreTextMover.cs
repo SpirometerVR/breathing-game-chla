@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class TextMover : MonoBehaviour
+public class ScoreTextMover : MonoBehaviour
 {
     public GameObject player;
     private Vector3 offset = new Vector3(0, 0, 117.7f);

@@ -49,7 +49,7 @@ public class RocketController : MonoBehaviour
     private float exhaleThresh = 1470f;
     private float inhaleTresh = 1200f;
     private float steadyThresh = 1340f;
-    private float speedMultiplier = 4f;
+    private float speedMultiplier = 2f;
 
     private AudioSource audio;
     private Renderer gameRocket;

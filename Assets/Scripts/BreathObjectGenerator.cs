@@ -15,7 +15,7 @@ public class BreathObjectGenerator : MonoBehaviour
     private bool firstDiamondSpawn = false;
     public bool inhaleSpawned = false;
     private bool exhaleSpawned = false;
-    private float initialDiamondDistance = 130f;
+    private float initialDiamondDistance = 300f;
     private float remainingDiamondDistance = 0f;
 
     private bool isCoroutineExecutingFuel = false;
@@ -99,7 +99,7 @@ public class BreathObjectGenerator : MonoBehaviour
         // Continue spawning diamonds until their target quantity is reached.
         if (diamondCount < playerScript.exhaleTargetTime)
         {
-            remainingDiamondDistance += 320;
+            remainingDiamondDistance += 300;
             // Spawn the diamond behind the most recent diamond spawned.
             Vector3 spawnPosition = GameObject.FindGameObjectWithTag("Diamond").transform.position + new Vector3(RandomXPosition() / remainingDiamondDistance, 0, 1) * remainingDiamondDistance;
             Instantiate(remainingDiamonds, spawnPosition, playerRotation);

@@ -1,22 +1,14 @@
 ﻿<Properties StartupConfiguration="{C3DDFAB1-E380-48AE-A3AE-82A0F842DC85}|">
-  <MonoDevelop.Ide.ItemProperties.Oculus.VR.Scripts.Editor PreferredExecutionTarget="0d4cbded-00d3-4c38-a2f1-81a7b1503c8a" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/DiamondController.cs">
+  <MonoDevelop.Ide.ItemProperties.Oculus.VR.Scripts.Editor PreferredExecutionTarget="6d298efc-b945-4f05-92e8-92fe990bc49a" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/GenerateMap.cs">
     <Files>
       <File FileName="Assets/Scripts/RocketController.cs" Line="342" Column="45" />
-      <File FileName="Assets/Scripts/SetRenderQueue.cs" Line="1" Column="1" />
-      <File FileName="Assets/Scripts/ScoreBoard.cs" Line="8" Column="28" />
-      <File FileName="Assets/Scripts/BreathObjectGenerator.cs" Line="104" Column="1" />
-      <File FileName="Assets/Scripts/DiamondController.cs" Line="16" Column="17" />
+      <File FileName="Assets/Scripts/SetRenderQueue.cs" />
+      <File FileName="Assets/Scripts/ScoreBoard.cs" />
+      <File FileName="Assets/Scripts/BreathObjectGenerator.cs" />
+      <File FileName="Assets/Scripts/DiamondController.cs" />
+      <File FileName="Assets/Scripts/GenerateMap.cs" Line="1" Column="1" />
     </Files>
-    <Pads>
-      <Pad Id="ProjectPad">
-        <State name="__root__">
-          <Node name="breathing-game-chla" expanded="True">
-            <Node name="Assets" expanded="True" selected="True" />
-          </Node>
-        </State>
-      </Pad>
-    </Pads>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.PinnedWatches />
   <DisabledProjects>
